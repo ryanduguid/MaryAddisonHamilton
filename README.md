@@ -1,243 +1,44 @@
-# Australian Accounting Skills
+# Australian Accounting Skills: show the BAS tie-out
 
-```
-+----------------------------------------------------------------------+
-|                     australian-accounting-skills                     |
-+----------------------------------------------------------------------+
-|             Claude Code and Codex skills for AU practice             |
-+----------------------------------+-----------------------------------+
-| DR  what it gives you            | CR  what it needs                 |
-+----------------------------------+-----------------------------------+
-| 19 accounting workflows          | Claude Code, Codex, or CLI        |
-| practice and contracting packs   | ledger and contract exports       |
-| month end close checklists       | -                                 |
-+----------------------------------+-----------------------------------+
-```
+Synthetic example. Prep-only workflow aids; an authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
 
-![Australian Accounting Skills](assets/banner.svg)
+**Input:** a fabricated quarterly cash-basis BAS with GST collected of $4,400.00 and GST paid of $1,210.00, plus the matching GST control-account movement.
 
-[![Verify](https://github.com/ryanduguid/australian-accounting-skills/actions/workflows/verify.yml/badge.svg)](https://github.com/ryanduguid/australian-accounting-skills/actions/workflows/verify.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-4F485E.svg?labelColor=04001F)](LICENSE)
+Install the portable skill files: `npx skills add ryanduguid/australian-accounting-skills`
 
-Claude Code, Codex, and portable agent skills for Australian public-practice and contracting-business accounting workflows. The pack covers BAS, FBT, Division 7A, STP finalisation, close and workpapers, cashflow, progress claims, retentions, WIP, contract costs, plant, fuel, payroll tax (NSW), contractor super, TPAR and Coal LSL.
+An agent runtime is still required. Ask it to prepare the BAS workpaper from the supplied reports and show the GST control-account tie-out.
 
-Each skill encodes the *workflow* (the steps, the tie-outs, the exceptions to chase) rather than tax content. Rates, thresholds and due dates change, so each skill directs the agent to the applicable current primary authority: Commonwealth legislation and ATO material, State or Territory legislation and revenue office material, AASB standards, or Coal LSL guidance.
+**Output:** net GST of $3,190.00 ties to the $3,190.00 movement, with exceptions retained and reviewer sign-off blank.
 
-These are workflow skills, not a computational MCP and not a hosted ATO document library. For Payday Super timing and ATO benchmark ratios running on the operator's machine, install [Aus Accounting MCP](https://github.com/ryanduguid/australian-accounting/tree/main/apps/aus-accounting-mcp). Comparison: [Australian tax tools for AI agents](https://duguid.com.au/tools/australian-tax-ai-agents/).
+**Human decision:** Resolve the coding exceptions and confirm the reporting basis and evidence before signing off.
 
-The current release is [`v0.2.0`](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.0),
-published on 2 September 2026 with all nineteen skills. It absorbed the ten
-contracting skills previously published as Hardhat Ledger; that repository is
-archived and the consolidation record is in
-[`docs/HARDHAT-CONSOLIDATION.md`](docs/HARDHAT-CONSOLIDATION.md).
+![Synthetic BAS workpaper showing a $3,190 GST tie-out and blank reviewer sign-off](assets/readme/bas-workpaper-synthetic.svg)
 
-Citation details are in [`CITATION.cff`](CITATION.cff), which remains pinned to
-the [`v0.1.5` release](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.1.5),
-the original nine-skill practice pack.
+<details>
+<summary>Installation, worked example, skill catalogue and boundaries</summary>
 
-> [!WARNING]
-> **Not tax advice.** These skills are prep-only workflow aids. They do not lodge, declare, or replace professional judgement. See [DISCLAIMER.md](DISCLAIMER.md).
+## Runtime and release
 
-## Who this is for
+Claude Code is the tested runtime. Codex packaging and portable skill files are included; that does not establish testing in every agent runtime.
 
-Accountants in Australian public practice and finance staff in Australian SMEs, construction businesses and mining-services subcontractors using [Claude Code](https://claude.com/claude-code). Claude Code is the agent these skills are tested with. Codex and other agents that read `SKILL.md` files should work; Codex packaging is included, Claude Code is the tested runtime. Most skills work from standard CSV exports and degrade gracefully with no integrations at all.
+[v0.2.0](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.0) contains nineteen practice and contracting workflows. The command above resolves the default branch, which may be newer; [installation](docs/installation.md) includes the tagged path and the Hardhat Ledger collision warning.
 
-## Install
+[CITATION.cff](CITATION.cff) remains pinned to v0.1.5, the original nine-skill practice pack. The [Hardhat consolidation record](docs/HARDHAT-CONSOLIDATION.md) explains the expanded inventory.
 
-Pick the smallest path that matches what you need:
+## Reference
 
-| Need | Install | What you get |
-| --- | --- | --- |
-| Claude Code, with updates from this repo | Plugin install | Skills at the installed repository revision as `australian-accounting-skills:*` |
-| Codex | Codex plugin | The same revision's skills via `.codex-plugin/plugin.json` |
-| Any agent that reads `SKILL.md` | `npx skills` | Portable skill files only. No extra runtime. |
+- [Install, uninstall and versioning](docs/installation.md)
+- [First run and BAS walkthrough](docs/bas-walkthrough.md)
+- [Nineteen skills and their supporting files](docs/skill-catalogue.md)
+- [Related command-line tools](docs/integrations.md)
+- [Fabricated validation pack](validation/README.md) and [evaluation method](docs/EVAL.md)
+- [Contributor checks](AGENTS.md) and [professional boundary](DISCLAIMER.md)
+- [Discovery and GitHub About copy](docs/DISCOVERY.md)
 
-### Claude Code plugin
-
-This repo is also a Claude Code plugin marketplace. It packages the inventory
-present at the repository revision it installs under the stable namespace:
-
-```
-/plugin marketplace add ryanduguid/australian-accounting-skills
-/plugin install australian-accounting-skills@ryanduguid
-```
-
-The skills then register as `australian-accounting-skills:bas-preparation` and so on.
-
-The `australian-accounting-skills` plug-in ID, namespace and install target are stable compatibility identifiers.
-
-If the Hardhat Ledger plugin is installed, uninstall or disable
-`subcontractor-accounting-skills@ryanduguid-contracting` before installing
-`australian-accounting-skills@ryanduguid`. The ten transferred skill names are
-intentionally unchanged, so never enable both packs at once. See
-[`docs/HARDHAT-CONSOLIDATION.md`](docs/HARDHAT-CONSOLIDATION.md) for the exact
-source inventory and rollback route.
-
-### Codex plugin
-
-```
-codex plugin marketplace add ryanduguid/australian-accounting-skills
-codex plugin add australian-accounting-skills@ryanduguid
-```
-
-### Any agent, via the skills CLI
-
-One command, using the [`skills` CLI](https://github.com/vercel-labs/skills). It reads the
-`.claude/skills/` layout this repo uses, so no extra manifest is needed:
-
-```bash
-npx skills add ryanduguid/australian-accounting-skills
-```
-
-That installs into the current project (`./.claude/skills/`). Add `-g` to install into
-`~/.claude/skills` instead, `-a claude-code` to target one agent, and `-l` to list the skills
-without installing anything.
-
-### By hand
-
-Copy the skills you want into your project or user skills directory:
-
-```bash
-git clone https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
-mkdir -p ~/.claude/skills
-cp -r australian-accounting-skills/.claude/skills/* ~/.claude/skills/
-```
-
-PowerShell:
-
-```powershell
-git clone https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
-New-Item -ItemType Directory -Force "$HOME/.claude/skills"
-Copy-Item -Recurse australian-accounting-skills/.claude/skills/* "$HOME/.claude/skills/"
-```
-
-Or copy individual skill folders into `<project>/.claude/skills/`. The skills cross-reference each other (`bas-preparation`, `stp-finalisation`, `workpaper-tie-out`, `fbt-annual-workflow` and `xero-exports` are shared dependencies), so installing the full set works best. For a firm repository, adapt [`templates/firm-CLAUDE.md.example`](templates/firm-CLAUDE.md.example) to its actual policy; this repository's [`CLAUDE.md`](CLAUDE.md) is contributor guidance, not a substitute for firm controls.
-
-### Versioning
-
-The tagged `v0.2.0` release contains and tests all 19 skills as a set. The
-earlier `v0.1.5` release contained the original nine practice skills. Installing
-a subset by hand can break skills that call their siblings:
-
-- `bas-preparation`, `month-end-close` and `year-end-workpapers` depend on `xero-exports`
-- `fbt-annual-workflow` and `stp-finalisation` depend on each other (RFBA hand-off)
-- `year-end-workpapers` depends on `bas-preparation`, `stp-finalisation` and `workpaper-tie-out`
-- the contracting workflows use `contracting-exports` as their shared export
-  reference, and the costing, claim, retention and WIP skills cross-reference
-  each other
-
-Every command under [Install](#install) resolves the default branch, which may
-be ahead of the latest tag. To take the tagged 19-skill pack exactly as
-released and verified, install from the tag instead:
-
-```bash
-git clone --branch v0.2.0 --depth 1 https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
-mkdir -p ~/.claude/skills
-cp -r australian-accounting-skills/.claude/skills/* ~/.claude/skills/
-```
-
-Install the full tagged pack so the expanded set stays consistent. The
-nine-skill `v0.1.5` pack remains available from its tag for anyone who cites
-it.
-
-## First run
-
-Minimal path from install to one verified result, assuming Claude Code is already installed:
-
-1. Install the plugin (see above): `/plugin marketplace add ryanduguid/australian-accounting-skills` then `/plugin install australian-accounting-skills@ryanduguid`.
-2. Export three reports from Xero for your most recent completed BAS period: `Activity Statement`, `Trial Balance` as at period end, and `General Ledger Detail` for the GST control account(s). Use a demo or fabricated file if you are only trialling; keep real client exports inside firm policy.
-3. In Claude Code, in the folder holding those exports, ask: "Prepare a BAS workpaper for the quarter ended 31 March from these exports. Cash basis, quarterly lodger." The `bas-preparation` skill picks this up and asks for anything missing.
-4. Verify the result yourself: check that net GST on the workpaper (1A less 1B) ties to the movement in the GST control account for the period. If the workpaper shows that tie-out and lists its exceptions, it worked.
-
-Ask the agent in natural language. Copy one of these:
-
-```text
-Prepare a BAS workpaper for the quarter ended 31 March from these exports. Cash basis, quarterly lodger. Tie 1A less 1B to the GST control account movement and list exceptions.
-```
-
-```text
-Finalise STP for the year ended 30 June from this payroll register, GL detail, and STP reporting summary. Reconcile register to GL and register to STP by employee. Do not compute an SGC charge.
-```
-
-```text
-Use workpaper-tie-out on this year-end pack. Every statement line needs a source. Carry unresolved differences; do not smooth them.
-```
-
-Uninstall with `/plugin uninstall australian-accounting-skills@ryanduguid` (or delete the copied folders from `~/.claude/skills/` if you installed by hand).
-
-## Preview
-
-![Synthetic BAS workpaper for Cedar and Pine Consulting Pty Ltd, quarter ended 31 March 2026](assets/readme/bas-workpaper-synthetic.svg)
-
-Fabricated sample. Shows labelled BAS amounts, a GST control-account tie-out to the cent, exceptions carried to the reviewer, and a blank reviewer sign-off. Not an ATO form. Not fileable. Not a real entity.
-
-## Worked example: bas-preparation
-
-**Input.** A quarterly BAS for a small company on the cash basis. You supply the activity statement, the trial balance, general ledger detail for the GST control accounts, prior period BAS figures, and the payroll activity summary. Xero report names for each are in the `xero-exports` skill.
-
-**What the skill checks.** It confirms the report basis matches the entity's ATO registration basis first, and stops and flags a mismatch rather than continuing. It maps ledger figures only to the labels actually present on the entity's statement (it will not invent a W1 just because payroll data exists; large withholders reporting through STP may not need one). It ties net GST (1A less 1B) to the movement in the GST control account to the cent, using the cash-basis bridge where the ledger is on accruals. It scans for coding exceptions such as GST claimed on bank fees, stamp duty or wages, and compares each label to the prior period and same period last year, asking you for the firm's variance threshold rather than inventing one.
-
-**Output and escalation.** A review-ready workpaper: summary page with labels, amounts and tie-out proof, an exceptions list with resolutions, preparer and date, and space for reviewer sign-off. It does not lodge and does not draft ATO correspondence; that stays with the registered agent. If it cannot verify a current rate or label at ato.gov.au, it stops, asks you for the figure, records it as "per [name], [date], unverified", and flags it on the workpaper.
-
-## Skills
-
-| Skill | Use it for |
-|---|---|
-| `bas-preparation` | Prepare/review a BAS from ledger exports; label mapping, GST control account tie-out |
-| `month-end-close` | Checklist-driven close: bank recs, control accounts, accruals, variance review |
-| `workpaper-tie-out` | Audit-style verification: every statement line traced to workpaper and source |
-| `fbt-annual-workflow` | FBT year-end: benefit identification, declarations, gross-up, RFBA |
-| `div7a-compliance` | Division 7A loan register, complying-agreement checks, minimum repayments |
-| `stp-finalisation` | STP year-end finalisation: payroll vs GL vs filed totals, super guarantee checks |
-| `year-end-workpapers` | Review-ready annual workpaper pack from a trial balance export |
-| `xero-exports` | Pulling and parsing Xero reports: quirks, completeness checks, naming conventions |
-| `cashflow-forecast-13week` | Rolling 13-week cashflow from bank balance, agings and ATO obligation timing |
-| `progress-claim-preparation` | Prepare and review payment claims, variations, retention and reference-date evidence |
-| `retention-schedule` | Roll forward contractual retentions and test jurisdiction-specific trust controls |
-| `wip-over-under-billing` | Prepare per-contract WIP inputs and route arithmetic through TheWIPTally |
-| `contract-cost-tracking` | Reconcile job costs, commitments, plant allocations and forecast cost to complete |
-| `plant-and-equipment-costing` | Build reviewable machine-cost and utilisation schedules |
-| `fuel-tax-credits` | Prepare evidence and apportionment for fuel tax credit review |
-| `payroll-tax-contractors` | Test contractor payments against the NSW relevant-contract and employment-agency pathways (NSW only; other jurisdictions need their own Act) |
-| `contractor-super-tpar` | Prepare contractor super, TPAR and no-ABN review workpapers |
-| `coal-lsl-levy` | Prepare Coal LSL coverage, levy, reimbursement and payroll tie-outs |
-| `contracting-exports` | Validate the job, claim, plant, payroll and subcontractor exports the contracting skills consume |
-
-Also included:
-
-- [`templates/firm-CLAUDE.md.example`](templates/firm-CLAUDE.md.example): a starter `CLAUDE.md` for an accounting firm's repo.
-- [`CLAUDE.md`](CLAUDE.md) and [`.claude/rules/accounting-safety.md`](.claude/rules/accounting-safety.md): maintained contributor and accounting-safety boundaries.
-- [`validation/README.md`](validation/README.md) and [`scripts/validate_validation.py`](scripts/validate_validation.py): a fabricated regression pack and fail-closed static validator.
-- [`docs/EVAL.md`](docs/EVAL.md) and [`validation/results.schema.json`](validation/results.schema.json): how to run the pack against a model by hand and record a pass or fail per card.
-- [`DISCLAIMER.md`](DISCLAIMER.md) and [`docs/DISCOVERY.md`](docs/DISCOVERY.md): legal boundary and GitHub About copy.
-
-## Sibling command-line tools
-
-These skills name five maintained tools rather than asking the agent to invent the same work. Each now lives in a monorepo; the distribution and command names are unchanged.
-
-- [`payday-super-check`](https://github.com/ryanduguid/australian-accounting/tree/main/packages/payday-super-checker) (`payday-super-checker` in `australian-accounting`) for contribution timing against SGAA s 18C. The agent must not invent an SGC charge; that remains advice territory.
-- [`xero-trial-balance-export`](https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/xero-trial-balance-export) (`export-tb`; `xero-trial-balance-export` in `accounting-review-pipeline`) for an optional API trial-balance CSV. The `xero-exports` file path remains the default for any practice.
-- [Workpaper Review Gate](https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/review-ready-gate) (`review-ready-gate` in `accounting-review-pipeline`) for whether a BAS, month-end, or year-end pack is allowed onto the review desk. A `NOT_READY` or `BLOCKED` pack goes back to the preparer. `READY` is not sign-off.
-- [The WIP Tally](https://github.com/ryanduguid/australian-accounting/tree/main/packages/the-wip-tally) (`the-wip-tally` in `australian-accounting`; `wip-tally schedule`) for reviewed cost-to-cost arithmetic. The skills retain the unit-of-account, recognition and professional-judgement gates.
-
-Trial-balance exception review after the gate runs through [Monthly Close Controls](https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/monthly-close-control-plane) (`monthly-close-control-plane` in `accounting-review-pipeline`), which surfaces exceptions and never locks a period.
-
-## Design principles
-
-1. **Workflow over content.** The skill knows the steps and the checks; the applicable current primary authority is the source of truth for rates, thresholds, labels and due dates. Use Commonwealth legislation and ATO material, State or Territory legislation and revenue office material, AASB standards, or Coal LSL guidance, as relevant to the workflow.
-2. **Tie-out or it didn't happen.** Every skill ends by reconciling its output back to source. That habit separates a workpaper from a guess.
-3. **No client data in the repository.** Examples are fabricated from scratch. The `.gitignore` blocks common client-artefact patterns; keep real exports out of every repository and use them only where the engagement, firm policy and approved environment permit.
-4. **Degrade gracefully.** Skills work from CSV exports on disk. Ledger integrations (MCP) are a bonus, never a requirement.
-
-## Disclaimer
-
-See [DISCLAIMER.md](DISCLAIMER.md). These skills are workflow aids for qualified professionals. They are not tax advice, not financial advice, and not a substitute for professional judgement or review. Verify all rates, thresholds, labels and due dates against the applicable current primary authority before relying on any output: Commonwealth legislation and ATO material, State or Territory legislation and revenue office material, AASB standards, or Coal LSL guidance, as relevant to the workflow. Nothing here lodges anything. Lodgment is a registered agent's job.
-
-If these skills are run with client inputs through a cloud AI service, that data passes to the service. Check your firm's policy and your confidentiality and privacy obligations first; de-identify by default. [`templates/firm-CLAUDE.md.example`](templates/firm-CLAUDE.md.example) has starter privacy rules.
-
-## Author
+Skills specify the workflow and require current primary authority for mutable rates, thresholds, labels and due dates. Keep real client files in the firm's approved environment, outside this repository.
 
 Ryan Duguid, accountant in Newcastle NSW, provisional member of Chartered Accountants ANZ.
 
-## Licence
+MIT: [LICENSE](LICENSE). Provenance: [NOTICE](NOTICE).
 
-MIT. See [LICENSE](LICENSE). Provenance statement: [NOTICE](NOTICE).
+</details>

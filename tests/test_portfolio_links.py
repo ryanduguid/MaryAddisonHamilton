@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # carries the maintained location and is checked here instead.
 TARGET_FILES = (
     ROOT / "README.md",
+    ROOT / "docs/integrations.md",
     ROOT / ".claude/skills/bas-preparation/SKILL.md",
     ROOT / ".claude/skills/month-end-close/SKILL.md",
     ROOT / ".claude/skills/workpaper-tie-out/SKILL.md",

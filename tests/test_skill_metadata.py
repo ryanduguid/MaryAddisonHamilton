@@ -394,7 +394,7 @@ class SkillMetadataTests(unittest.TestCase):
 
     def test_readme_keeps_the_payroll_tax_jurisdiction_fence(self) -> None:
         """The skills table must not advertise beyond a skill's own scope."""
-        readme = (REPOSITORY / "README.md").read_text(encoding="utf-8")
+        readme = (REPOSITORY / "docs" / "skill-catalogue.md").read_text(encoding="utf-8")
         rows = [
             line
             for line in readme.splitlines()
