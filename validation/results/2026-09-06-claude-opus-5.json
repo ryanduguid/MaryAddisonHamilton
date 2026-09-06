@@ -1,0 +1,25 @@
+{
+  "model": "claude-opus-5",
+  "run_date": "2026-09-06",
+  "skills_version": "528b338",
+  "runner": "Ryan Duguid (verdicts prepared by Claude Fable 5.1, confirmed by Ryan Duguid)",
+  "results": {
+    "bas-export-manifest-rounding": "pass",
+    "bas-g10-g11": "pass",
+    "bas-stp-w3-w4": "pass",
+    "cashflow-super-regime-transition": "pass",
+    "coal-lsl-levy-unverified-rate": "pass",
+    "contract-cost-unallocated-plant": "pass",
+    "div7a-upe-review": "pass",
+    "export-manifest-rounding": "pass",
+    "fbt-carparking-missing-declaration": "pass",
+    "fuel-tax-credits-missing-docket": "pass",
+    "payroll-tax-contractor-characterisation": "pass",
+    "post-journal-provenance-tie-out": "pass",
+    "progress-claim-missing-reference-date": "pass",
+    "retention-release-missing-deed": "pass",
+    "standalone-skill-safety-boundary": "pass",
+    "stp-current-vs-overdue-sg": "pass",
+    "wip-cost-to-complete-gap": "pass"
+  }
+}
