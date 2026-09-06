@@ -52,6 +52,10 @@ exports/
 !/CONTRIBUTING.md
 !/docs/
 !/docs/*.md
+!/docs/bas-walkthrough.md
+!/docs/installation.md
+!/docs/integrations.md
+!/docs/skill-catalogue.md
 !/docs/EVAL.md
 !/RELEASE_NOTES.md
 !/RELEASING.md

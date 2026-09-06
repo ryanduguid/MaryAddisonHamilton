@@ -1,6 +1,6 @@
 # Australian Accounting Skills: show the BAS tie-out
 
-Synthetic example. Prep-only workflow aids; an authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
+Synthetic example. Prep-only workflow aids. An authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
 
 **Input:** a fabricated quarterly cash-basis BAS with GST collected of $4,400.00 and GST paid of $1,210.00, plus the matching GST control-account movement.
 
@@ -19,9 +19,9 @@ An agent runtime is still required. Ask it to prepare the BAS workpaper from the
 
 ## Runtime and release
 
-Claude Code is the tested runtime. Codex packaging and portable skill files are included; that does not establish testing in every agent runtime.
+Claude Code is the tested runtime. Codex packaging and portable skill files are included. That does not establish testing in every agent runtime.
 
-[v0.2.0](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.0) contains nineteen practice and contracting workflows. The command above resolves the default branch, which may be newer; [installation](docs/installation.md) includes the tagged path and the Hardhat Ledger collision warning.
+[v0.2.0](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.0) contains nineteen practice and contracting workflows. The command above resolves the default branch, which may be newer. [Installation](docs/installation.md) includes the tagged path and the Hardhat Ledger collision warning.
 
 [CITATION.cff](CITATION.cff) remains pinned to v0.1.5, the original nine-skill practice pack. The [Hardhat consolidation record](docs/HARDHAT-CONSOLIDATION.md) explains the expanded inventory.
 
