@@ -1,6 +1,6 @@
 # Discovery metadata
 
-Public discovery copy must satisfy the rules below wherever it appears: GitHub
+Public discovery copy must satisfy the rules below wherever it appears, in GitHub
 About, repository topics, README, `.claude-plugin/plugin.json` and
 `.codex-plugin/plugin.json`.
 
