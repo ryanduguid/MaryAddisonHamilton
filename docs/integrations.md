@@ -1,4 +1,4 @@
-## Sibling command-line tools
+# Sibling command-line tools
 
 For local Payday Super timing and ATO benchmark ratios through an agent, see [Aus Accounting MCP](https://github.com/ryanduguid/australian-accounting/tree/main/apps/aus-accounting-mcp), distribution `aus-accounting-mcp`.
 

@@ -1,11 +1,5 @@
 # Hardhat Ledger consolidation
 
-Status on 4 September 2026: the `v0.2.0` destination release was published on
-2 September 2026 and `ryanduguid/hardhat-ledger` was archived on 3 September
-2026. The sections below record the consolidation as it was prepared and
-gated; the rollback route deliberately keeps its link to the archived Hardhat
-Ledger release.
-
 This pack became the owner of the ten contracting skills transferred from
 `ryanduguid/hardhat-ledger`. The integration source is immutable commit
 `eb3b8a6ba47dfcdc05cea434f2f6a7dba82f96ef`. Every transferred `SKILL.md`
@@ -13,11 +7,10 @@ matches that commit after canonical LF normalisation. Destination-owned source
 indexes, discovery metadata and validation cards sit beside those unchanged
 definitions.
 
-This document recorded the local preparation for the `v0.2.0` release while
-it was still a proposal. That release, containing the inventory below, was
-published and verified on 2 September 2026 and passed all three discovery
-paths, so this pack is now the only install route for the ten contracting
-skills.
+The `v0.2.0` destination release was published and verified on 2 September
+2026, and `ryanduguid/hardhat-ledger` was archived on 3 September 2026. That
+archive stays readable, so its last compatible release, tags and rollback link
+remain available; no forwarding implementation was layered on it.
 
 ## Exact transferred inventory
 
@@ -39,31 +32,12 @@ The reviewed legal and tax source record is retained in
 remain bounded by the copied skills' use-time source checks and human-review
 gates.
 
-## Replacement gates
-
-A destination release is eligible only after all of the following pass at its
-exact release commit:
-
-1. the Claude plugin marketplace and plugin manifests expose exactly 19 skills;
-2. the Codex plugin resolves the same `.claude/skills/` owner;
-3. `skills@1.5.22 add . --list` discovers the same 19 names;
-4. all 17 fabricated validation cards, including the standalone-safety card,
-   pass the fixed-inventory validator;
-5. the complete unit suite, source gates and exact transfer hashes pass; and
-6. an independent review confirms the client-data, consequential-action and
-   professional-judgement boundaries are not weaker than Hardhat Ledger.
-
 ## Migration order
 
-The `v0.2.0` destination release was published on 2 September 2026 and passed
-those gates. Existing Hardhat users must uninstall or disable
+Existing Hardhat users must uninstall or disable
 `subcontractor-accounting-skills@ryanduguid-contracting` before installing
 `australian-accounting-skills@ryanduguid`. The ten names are stable
 compatibility identifiers, so never enable both packs at once.
-
-With the replacement available and verified, the owner archived Hardhat Ledger
-on 3 September 2026. Its last compatible release, tags and rollback link remain
-readable in the archive; no forwarding implementation was layered on it.
 
 ## Rollback
 

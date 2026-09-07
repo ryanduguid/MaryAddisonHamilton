@@ -2,17 +2,9 @@
 # Python distribution: nothing here is installed or built, and the single test
 # dependency stays pinned in requirements-test.txt.
 
-[tool.ruff]
-line-length = 100
-src = ["scripts", "tests"]
-
-[tool.ruff.lint]
-# First-enablement set: syntax and undefined-name errors only (E9, F82).
-# Existing import layout and string literals stay as they are.
-select = ["E9", "F82"]
-
 [tool.mypy]
 python_version = "3.10"
 files = ["scripts", "tests"]
+check_untyped_defs = true
 ignore_missing_imports = true
 pretty = true
