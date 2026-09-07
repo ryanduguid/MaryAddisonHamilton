@@ -20,18 +20,23 @@ These skills describe how an agent should work through an Australian accounting 
 
 ## Local verification
 
-Python 3.10 or newer. Install the pinned test dependency first:
+Python 3.10 or newer. Install the pinned test dependency and lint tools first:
 
 ```bash
-python -m pip install --requirement requirements-test.txt
+python -m pip install --requirement requirements-test.txt "ruff==0.16.6" "mypy==2.3.1"
+python -m ruff check .
+python -m mypy
 python -m unittest discover -s tests -v
 python scripts/validate_validation.py
 python tests/verify_skills_cli.py
 ```
 
-Those three checks are the gates `.github/workflows/verify.yml` runs. The last
-one needs `npx` and hard-codes the expected skill names, so renaming a skill
-fails there even when the unittest suite passes.
+Those five checks are the gates `.github/workflows/verify.yml` runs. Ruff and
+mypy run in its `lint` job, then the three verification checks run on Python
+3.10, 3.12 and 3.13. The last one needs `npx` and hard-codes the expected skill
+names, so renaming a skill fails there even when the unittest suite passes.
+
+Install the git hooks once with `python -m pip install pre-commit && pre-commit install`. They run the pinned ruff check and ruff format on staged files.
 
 The suite checks skill metadata and structure. Add a test when your change introduces a rule a reader could get wrong.
 

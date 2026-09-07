@@ -1,0 +1,8 @@
+# Local git hooks. Install once with `pre-commit install`. Ruff is pinned to
+# the version CI runs, so a commit that passes here passes the lint gate.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.6
+    hooks:
+      - id: ruff
+      - id: ruff-format
