@@ -1,3 +1,28 @@
+# v0.2.1
+
+Changes since the last published release, `v0.2.0`. The inventory is the same
+nineteen skills.
+
+- `xero-exports` replaces inferred parsing rules with export facts observed
+  against 41 Xero Demo Company (AU) Excel exports and two CSV exports on
+  5 September 2026, and adds a header-row table for the reports the pack
+  consumes.
+- The validation pack gains a results schema and evaluation guide, and the
+  first recorded validation run: 17 cards, 17 pass, `claude-opus-5` at
+  `6e08f2a`, one fresh session per card with only that card and the skills it
+  names loaded.
+- The README leads with the synthetic BAS tie-out, AGENTS.md merges its
+  duplicated repository summary and hand-off check lists, and the sibling
+  tools point at their monorepo homes.
+- `verify.yml` runs ruff and mypy in a lint job before the verification checks,
+  which now run on Python 3.10, 3.12 and 3.13, and `pre-commit` runs the same
+  ruff version on staged files. Every workflow carries a concurrency group and
+  a job timeout, and text files normalise to LF.
+- The release and verify workflows call the shared release-policy workflows at
+  a commit reachable from that repository's `main` (`99a6314`) after the
+  5 September history rewrite left the earlier pins dangling. The shared
+  skill-verification canary reports on that pin.
+
 # v0.2.0
 
 Changes since the last published release, `v0.1.5`:
