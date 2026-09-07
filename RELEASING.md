@@ -47,7 +47,7 @@ intended version changes and bind verification to the exact source and policy
 commit:
 
 ```bash
-tag=v0.1.6
+tag=v0.2.1
 repo=ryanduguid/australian-accounting-skills
 release_commit="$(git ls-remote "https://github.com/$repo.git" "refs/tags/$tag^{}" | cut -f1)"
 test -n "$release_commit"
@@ -72,7 +72,7 @@ only direction is forward, so cut a new version rather than try to get behind it
 
 ## Preserved squash-boundary releases
 
-Four published tags point at pull-request-side commits that preceded their
+Five published tags point at pull-request-side commits that preceded their
 squash merges to `main`. They are intentional historical exceptions outside
 current `main` ancestry:
 
@@ -82,6 +82,10 @@ current `main` ancestry:
 | `v0.1.3` | `38fae525f456391dabf4227459320566117cc0a7` | `3bb02f96fe5aaeddf2d1299b73a00d54d41e5163` |
 | `v0.1.4` | `e522b3cb24cc972ec8bdc183eecf464137fa7d2e` | `ef8415da22c9d6408df4b637e166b452a3f4bd23` |
 | `v0.1.5` | `ba7496f613d552cb9fdbb49083848d3baf180c08` | `57f7bef712fa856db7f073fab65c4cf016885197` |
+| `v0.2.0` | `578e7f17669db807d8a43d08d10962e66f3274f0` | `1d6b9f12c6faed307018c524d76a3c6689db3f46` |
+
+The `v0.2.0` peeled commit carries the same tree as its squash merge
+`29475b9`, so the released files match `main` at that point exactly.
 
 Ancestry and release attestation are separate facts. `gh release verify`
 succeeds for `v0.1.5`. It returns `no attestations for tag` for `v0.1.1`,

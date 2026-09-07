@@ -71,8 +71,9 @@ Or copy individual skill folders into `<project>/.claude/skills/`. The skills cr
 
 ### Versioning
 
-The tagged `v0.2.0` release contains and tests all 19 skills as a set. The
-earlier `v0.1.5` release contained the original nine practice skills. Installing
+The tagged `v0.2.1` release contains and tests all 19 skills as a set, as
+`v0.2.0` did. The earlier `v0.1.5` release contained the original nine
+practice skills. Installing
 a subset by hand can break skills that call their siblings:
 
 - `bas-preparation`, `month-end-close` and `year-end-workpapers` depend on `xero-exports`
@@ -87,7 +88,7 @@ be ahead of the latest tag. To take the tagged 19-skill pack exactly as
 released and verified, install from the tag instead:
 
 ```bash
-git clone --branch v0.2.0 --depth 1 https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
+git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
 mkdir -p ~/.claude/skills
 cp -r australian-accounting-skills/.claude/skills/* ~/.claude/skills/
 ```
