@@ -43,9 +43,8 @@ xero
 ```
 
 Apply with `scripts/publish-github-about.sh` from a session authenticated to
-GitHub (`gh auth status`). The Actions `GITHUB_TOKEN` cannot PATCH homepage
-(needs repository admin), so the `github-about` workflow warns and continues
-rather than failing. GitHub has no public pin API; pin this repository from
+GitHub (`gh auth status`); the Actions `GITHUB_TOKEN` cannot PATCH homepage
+(needs repository admin). GitHub has no public pin API; pin this repository from
 the profile **Customize your pins** dialog.
 
 skills.sh has no public submit API. `npx skills add ryanduguid/australian-accounting-skills`
