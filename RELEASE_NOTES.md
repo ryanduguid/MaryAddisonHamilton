@@ -3,10 +3,13 @@
 Changes since the last published release, `v0.2.0`. The inventory is the same
 nineteen skills.
 
-- `xero-exports` replaces inferred parsing rules with export facts observed
-  against 41 Xero Demo Company (AU) Excel exports and two CSV exports on
-  5 September 2026, and adds a header-row table for the reports the pack
-  consumes.
+- `xero-exports` replaces its inferred parsing rules with conventions and
+  header rows verified against Xero's own report exports. The skill's Parsing
+  conventions and Observed column headers sections are the record: they name
+  the export set (the Excel exports of 41 Demo Company (AU) reports plus the
+  Overall Budget and Statement Lines CSV exports), carry the 5 September 2026
+  check date beside each fact relied on, and say to re-verify when Xero
+  changes a report layout.
 - The validation pack gains a results schema and evaluation guide, and the
   first recorded validation run: 17 cards, 17 pass, `claude-opus-5` at
   `6e08f2a`, one fresh session per card with only that card and the skills it
