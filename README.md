@@ -21,7 +21,7 @@ An agent runtime is still required. Ask it to prepare the BAS workpaper from the
 
 Claude Code is the tested runtime. Codex packaging and portable skill files are included. That does not establish testing in every agent runtime.
 
-[v0.2.0](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.0) contains nineteen practice and contracting workflows. The command above resolves the default branch, which may be newer. [Installation](docs/installation.md) includes the tagged path and the Hardhat Ledger collision warning.
+[v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1) contains nineteen practice and contracting workflows. The command above resolves the default branch, which may be newer. [Installation](docs/installation.md) includes the tagged path and the Hardhat Ledger collision warning.
 
 [CITATION.cff](CITATION.cff) remains pinned to v0.1.5, the original nine-skill practice pack. The [Hardhat consolidation record](docs/HARDHAT-CONSOLIDATION.md) explains the expanded inventory.
 
