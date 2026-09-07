@@ -56,6 +56,8 @@ PROVENANCE_FILES = (ROOT / "docs/HARDHAT-CONSOLIDATION.md",)
 
 
 class PortfolioLinkTests(unittest.TestCase):
+    aggregate_text: str
+
     @classmethod
     def setUpClass(cls) -> None:
         cls.aggregate_text = "\n".join(

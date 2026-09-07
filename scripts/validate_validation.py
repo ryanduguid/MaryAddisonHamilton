@@ -484,13 +484,13 @@ def main() -> int:
 
     read_sources: dict[str, str] = {}
     for rel in sorted(expected_all):
-        path = ROOT / PurePosixPath(rel)
+        source_path = ROOT / PurePosixPath(rel)
         try:
-            check_expected_path(path)
+            check_expected_path(source_path)
             check_ignored(rel)
-            text = read_utf8(path)
-            check_text(rel, text)
-            read_sources[rel] = text
+            source_text = read_utf8(source_path)
+            check_text(rel, source_text)
+            read_sources[rel] = source_text
         except (OSError, ValidationError) as error:
             errors.append(f"{rel}: {error}")
 
@@ -563,8 +563,8 @@ def main() -> int:
         except ValidationError as error:
             errors.append(str(error))
 
-    for error in errors:
-        print(f"ERROR: {error}")
+    for message in errors:
+        print(f"ERROR: {message}")
     if errors:
         print(f"Validation failed with {len(errors)} error(s).")
         return 1
