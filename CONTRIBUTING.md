@@ -31,12 +31,12 @@ python scripts/validate_validation.py
 python tests/verify_skills_cli.py
 ```
 
-Those five checks are the gates `.github/workflows/verify.yml` runs: ruff and
-mypy in its `lint` job, then the three verification checks on Python 3.10, 3.12
-and 3.13. The last one needs `npx` and hard-codes the expected skill names, so
-renaming a skill fails there even when the unittest suite passes.
+Those five checks are the gates `.github/workflows/verify.yml` runs. Ruff and
+mypy run in its `lint` job, then the three verification checks run on Python
+3.10, 3.12 and 3.13. The last one needs `npx` and hard-codes the expected skill
+names, so renaming a skill fails there even when the unittest suite passes.
 
-Install the git hooks once with `python -m pip install pre-commit && pre-commit install`; they run the pinned ruff check and ruff format on staged files.
+Install the git hooks once with `python -m pip install pre-commit && pre-commit install`. They run the pinned ruff check and ruff format on staged files.
 
 The suite checks skill metadata and structure. Add a test when your change introduces a rule a reader could get wrong.
 
