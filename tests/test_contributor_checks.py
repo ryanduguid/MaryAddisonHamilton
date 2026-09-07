@@ -13,15 +13,22 @@ VERIFY_WORKFLOW = REPOSITORY / ".github" / "workflows" / "verify.yml"
 CONTRIBUTOR_GUIDES = ("AGENTS.md", "CONTRIBUTING.md")
 
 
+GATE_JOBS = ("lint", "verify")
+SETUP_STEP_PREFIXES = ("Check out", "Set up", "Install")
+
+
 def ci_gate_commands() -> list[str]:
-    """Return the verify job's gate commands, skipping dependency setup."""
+    """Return every gate command from the lint and verify jobs, skipping setup steps."""
     workflow = yaml.safe_load(VERIFY_WORKFLOW.read_text(encoding="utf-8"))
-    steps = workflow["jobs"]["verify"]["steps"]
-    return [
-        " ".join(step["run"].split())
-        for step in steps
-        if str(step.get("name", "")).startswith("Verify")
-    ]
+    commands: list[str] = []
+    for job in GATE_JOBS:
+        for step in workflow["jobs"][job]["steps"]:
+            if "run" not in step:
+                continue
+            if str(step.get("name", "")).startswith(SETUP_STEP_PREFIXES):
+                continue
+            commands.append(" ".join(step["run"].split()))
+    return commands
 
 
 class ContributorCheckTests(unittest.TestCase):
@@ -45,6 +52,16 @@ class ContributorCheckTests(unittest.TestCase):
                 self.assertIn(section, agents)
 
         self.assertIn(claude, ("@AGENTS.md", "@AGENTS.md\n"))
+
+    def test_gate_discovery_covers_the_lint_job_and_skips_setup(self) -> None:
+        """A lint command dropped from a guide must fail here, not after hand-off."""
+        gates = ci_gate_commands()
+        self.assertIn("python -m ruff check .", gates)
+        self.assertIn("python -m mypy", gates)
+        self.assertEqual(len(gates), 5)
+        for gate in gates:
+            with self.subTest(gate=gate):
+                self.assertNotIn("pip install", gate)
 
     def test_every_ci_gate_appears_in_every_contributor_guide(self) -> None:
         """A gate missing from the local list fails only after hand-off."""
