@@ -1,4 +1,4 @@
-## Skills
+# Skills
 
 | Skill | Use it for |
 |---|---|

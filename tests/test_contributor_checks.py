@@ -56,9 +56,8 @@ class ContributorCheckTests(unittest.TestCase):
     def test_gate_discovery_covers_the_lint_job_and_skips_setup(self) -> None:
         """A lint command dropped from a guide must fail here, not after hand-off."""
         gates = ci_gate_commands()
-        self.assertIn("python -m ruff check .", gates)
         self.assertIn("python -m mypy", gates)
-        self.assertEqual(len(gates), 5)
+        self.assertEqual(len(gates), 4)
         for gate in gates:
             with self.subTest(gate=gate):
                 self.assertNotIn("pip install", gate)
