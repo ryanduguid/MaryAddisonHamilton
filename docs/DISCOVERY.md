@@ -1,51 +1,16 @@
 # Discovery metadata
 
-Use this file as the source of truth for public discovery copy across GitHub
-About, repository topics, README, `.claude-plugin/plugin.json`, and
+Public discovery copy must satisfy the rules below wherever it appears: GitHub
+About, repository topics, README, `.claude-plugin/plugin.json` and
 `.codex-plugin/plugin.json`.
 
 ## GitHub About
 
-Description:
-
-```text
-Claude Code and Codex skills for Australian practice and contracting workflows. Not lodgment.
-```
-
-Website:
-
-```text
-https://duguid.com.au/tools/australian-tax-ai-agents/
-```
-
-Topics:
-
-```text
-accounting
-accounting-automation
-agent-skills
-ai-agents
-ato
-australia
-australian-accounting
-australian-tax
-bas
-claude-code
-codex
-construction-accounting
-division-7a
-fbt
-public-practice
-python
-stp
-tax-prep
-xero
-```
-
-Apply with `scripts/publish-github-about.sh` from a session authenticated to
-GitHub (`gh auth status`); the Actions `GITHUB_TOKEN` cannot PATCH homepage
-(needs repository admin). GitHub has no public pin API; pin this repository from
-the profile **Customize your pins** dialog.
+`scripts/publish-github-about.sh` holds the description, homepage and topic
+list that are actually applied. Run it from a session authenticated to GitHub
+(`gh auth status`); the Actions `GITHUB_TOKEN` cannot PATCH homepage (needs
+repository admin). GitHub has no public pin API; pin this repository from the
+profile **Customize your pins** dialog.
 
 skills.sh has no public submit API. `npx skills add ryanduguid/australian-accounting-skills`
 already lists the 19 skills. Do not claim a skills.sh directory page until

@@ -1,4 +1,4 @@
-## First run
+# First run
 
 Minimal path from install to one verified result, assuming Claude Code is already installed:
 

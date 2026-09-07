@@ -81,8 +81,7 @@ it.
 ## Checks before opening a pull request
 
 ```
-python -m pip install --requirement requirements-test.txt "ruff==0.16.6" "mypy==2.3.1"
-python -m ruff check .
+python -m pip install --requirement requirements-test.txt "mypy==2.3.1"
 python -m mypy
 python -m unittest discover -s tests -v
 python scripts/validate_validation.py
@@ -90,10 +89,9 @@ python tests/verify_skills_cli.py
 git diff --check
 ```
 
-The five Python checks are the gates `.github/workflows/verify.yml` runs. Ruff
-and mypy run in its `lint` job, then the three verification checks run on
-Python 3.10, 3.12 and 3.13. `pre-commit install` runs the pinned ruff check and
-ruff format on staged files before each commit.
+The four Python checks are the gates `.github/workflows/verify.yml` runs. Mypy
+runs in its `lint` job, then the three verification checks run on Python 3.10,
+3.12 and 3.13.
 
 `tests/test_skill_metadata.py` enforces the layout: front matter carrying
 `name` and `description`, `name` matching the directory exactly, no duplicate
