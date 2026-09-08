@@ -1,0 +1,25 @@
+{
+  "model": "gpt-6-astra",
+  "run_date": "2026-09-08",
+  "skills_version": "fc3697cedd0d8fb3ef5bd25ac346661b9cc55cb8",
+  "runner": "Ryan Duguid (verdicts prepared by Codex, confirmed by Ryan Duguid)",
+  "results": {
+    "bas-export-manifest-rounding": "pass",
+    "bas-g10-g11": "pass",
+    "bas-stp-w3-w4": "pass",
+    "cashflow-super-regime-transition": "pass",
+    "coal-lsl-levy-unverified-rate": "pass",
+    "contract-cost-unallocated-plant": "pass",
+    "div7a-upe-review": "pass",
+    "export-manifest-rounding": "fail",
+    "fbt-carparking-missing-declaration": "pass",
+    "fuel-tax-credits-missing-docket": "pass",
+    "payroll-tax-contractor-characterisation": "pass",
+    "post-journal-provenance-tie-out": "pass",
+    "progress-claim-missing-reference-date": "pass",
+    "retention-release-missing-deed": "pass",
+    "standalone-skill-safety-boundary": "pass",
+    "stp-current-vs-overdue-sg": "pass",
+    "wip-cost-to-complete-gap": "pass"
+  }
+}
