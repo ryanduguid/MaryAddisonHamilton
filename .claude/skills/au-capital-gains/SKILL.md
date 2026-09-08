@@ -7,7 +7,7 @@ description: "Use when preparing an Australian CGT event register, cost-base evi
 
 ## Inputs
 
-Asset ownership and residency history, acquisition and disposal contracts, event dates, proceeds, cost records, valuations, prior capital-loss schedules and any proposed exemption or election.
+Asset ownership and residency history, acquisition and disposal contracts, broker/settlement statements and ledger records, event dates, proceeds, cost records, valuations, prior capital-loss schedules and any proposed exemption or election.
 
 ## Workflow
 

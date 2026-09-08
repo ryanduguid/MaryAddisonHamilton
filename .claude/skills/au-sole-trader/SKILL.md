@@ -7,7 +7,7 @@ description: "Use when preparing an Australian sole trader's business-income sch
 
 ## Inputs
 
-Business activities, ledger and bank records, sales and expenses, stock and fixed-asset records, private-use allocations, GST basis, prior losses and concession evidence.
+Business activities, ledger and bank records, sales and expenses, stock and fixed-asset records, private-use allocations, GST basis, prior losses and concession evidence, plus the individual-return and BAS workpapers where a reconciliation to those schedules is required.
 
 ## Workflow
 

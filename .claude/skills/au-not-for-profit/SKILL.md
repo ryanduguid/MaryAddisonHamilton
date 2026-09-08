@@ -7,7 +7,7 @@ description: "Use when preparing Australian NFP income-tax status evidence, repo
 
 ## Inputs
 
-Governing document and amendments, purpose and activities, use of funds, registration/endorsement evidence, income streams, distribution and winding-up clauses, prior self-reviews and reporting records.
+Governing document and amendments, purpose and activities, use of funds, registration/endorsement evidence, income streams and supporting accounts, distribution and winding-up clauses, prior self-reviews and reporting records.
 
 ## Workflow
 

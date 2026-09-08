@@ -7,7 +7,7 @@ description: "Use when preparing Australian foreign-income schedules or evidence
 
 ## Inputs
 
-Residency and temporary-residency facts, income by country and type, foreign tax assessments and payments/refunds, gross and net receipts, currency records and relevant treaty facts.
+Income year, residency and temporary-residency facts, income by country and type, foreign tax assessments and payments/refunds, gross and net receipts, currency records and relevant treaty facts. For an offset-limit calculation, obtain the Australian return workpaper with all assessable income, deductions, losses and other inputs required by the applicable calculation.
 
 ## Workflow
 
@@ -17,7 +17,7 @@ Residency and temporary-residency facts, income by country and type, foreign tax
 
 3. Test the foreign tax against the income included in the Australian calculation and the period in which tax was paid. Record refunds, disputes and timing differences.
 
-4. Prepare the foreign income tax offset limit workpaper under verified current instructions. Do not assume every foreign levy is creditable or every amount paid is fully offsettable.
+4. Prepare the foreign income tax offset limit workpaper under instructions applicable to the income year. Reconcile its inputs to the Australian return workpaper; foreign receipts alone are insufficient. If whole-return inputs are missing, complete the foreign-income reconciliation and leave the limit unresolved. Do not assume every foreign levy is creditable or every amount paid is fully offsettable.
 
 ## Hand-off and checks
 

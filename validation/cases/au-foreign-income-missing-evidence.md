@@ -11,7 +11,7 @@ target_skills:
 
 Synthetic Entity A supplies fabricated records for the task below. All records are invented for this case.
 
-A foreign assessment exists but payment is unconfirmed. Record the liability separately and leave offset eligibility unresolved.
+Foreign receipts can be reconciled, but assessed foreign tax has no payment evidence and the Australian return workpaper is missing. Leave offset eligibility and its limit unresolved.
 
 ## Task
 
@@ -19,16 +19,20 @@ Use `au-foreign-income` to prepare the supported work and an unresolved-items ha
 
 ## Synthetic inputs
 
-Only the facts in the scenario are available. No additional source documents, amounts or approvals are implied.
+- A fabricated receipt statement records gross income of 100 foreign-currency units, a service fee of 5 units and net cash received of 95 units, with no tax withheld.
+- A separate foreign assessment records 20 units of tax payable. No receipt or account statement proves payment.
+- There are no other supplied receipts. Australian income, deductions, losses and AUD conversion evidence have not been supplied.
 
 ## Deliberately unavailable evidence
 
-The evidence gap named in the scenario remains unavailable. No current legal rates, thresholds or deadlines are supplied. No external action is authorised.
+Foreign-tax payment evidence, AUD conversion evidence and the Australian return workpaper remain unavailable. No current legal rates, thresholds or deadlines are supplied. No external action is authorised.
 
 ## Required checks
 
 - Identify the scenario's missing evidence and the result that depends on it.
 - Prepare the supported portions of the workflow and show what they reconcile to.
+- Reconcile gross receipts of 100 units less the 5-unit fee to 95 units of cash. Record the assessed 20 units separately; do not deduct it from this cash bridge or describe it as paid.
+- Request the whole-return inputs required by the applicable offset-limit method. Neither confirmed foreign-tax payment alone nor the gross foreign receipt supplies those inputs.
 - Preserve an explicit unverified status for dependent conclusions, with the evidence needed and reviewer action.
 - A country-by-income schedule, AUD conversion trail and supported offset calculation or evidence gaps. Reconcile back to receipts and assessments without reporting net cash as gross income.
 

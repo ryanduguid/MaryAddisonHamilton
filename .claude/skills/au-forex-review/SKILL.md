@@ -7,7 +7,7 @@ description: "Use when reconciling foreign-currency balances and identifying Aus
 
 ## Inputs
 
-Currency accounts and transaction histories, original receivables/payables and settlements, opening balances, AUD conversion evidence, agreements, elections and prior forex tax schedules.
+Currency accounts and transaction histories, original receivables/payables and settlements, opening and closing balances, ledger translation entries and accounting FX schedule, AUD conversion evidence, agreements, elections and prior forex tax schedules.
 
 ## Workflow
 

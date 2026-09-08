@@ -7,7 +7,7 @@ description: "Use when preparing GST evidence for an Australian property acquisi
 
 ## Inputs
 
-Contract and variations, property use/history, vendor and purchaser capacity, enterprise and GST registration facts, acquisition history, margin-scheme or going-concern documents, settlement statement and withholding notices.
+Contract and variations, property use/history, vendor and purchaser capacity, enterprise and GST registration facts, acquisition history, purchase invoices, margin-scheme or going-concern documents, settlement statement, withholding notices, ledger and relevant BAS workpaper.
 
 ## Workflow
 

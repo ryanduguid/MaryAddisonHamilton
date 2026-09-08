@@ -7,7 +7,7 @@ description: "Use when assembling Australian tax residency evidence, including a
 
 ## Inputs
 
-Travel chronology, accommodation and family ties, employment/business arrangements, intention supported by conduct, visa and temporary-residency facts, foreign residence/treaty evidence, asset register and relevant valuations.
+Travel chronology, accommodation and family ties, employment/business arrangements, intention supported by conduct, visa and temporary-residency facts, foreign residence/treaty evidence, income-stream and withholding records, asset register and relevant valuations.
 
 ## Workflow
 

@@ -7,7 +7,7 @@ description: "Use when preparing Australian tax records from crypto exchange and
 
 ## Inputs
 
-Complete exchange and wallet transaction exports, opening holdings and cost history, transaction identifiers, time zones, fees, AUD valuation evidence, ownership of wallets and purpose of activities. Never request private keys or seed phrases.
+Complete exchange and wallet transaction exports, opening and independently reported closing holdings, cost history, fiat cash statements, transaction identifiers, time zones, fees, AUD valuation evidence, ownership of wallets and purpose of activities. Never request private keys or seed phrases.
 
 ## Workflow
 

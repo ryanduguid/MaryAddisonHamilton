@@ -7,7 +7,7 @@ description: "Use when checking an Australian pay run's inputs, gross-to-net rec
 
 ## Inputs
 
-Pay period and payday, employment arrangements and jurisdiction, award/agreement and classifications, approved time/leave records, pay rates and variations, payroll register, deductions/withholding settings, super inputs and prior balances.
+Pay period and payday, employment arrangements and jurisdiction, award/agreement and classifications, approved time/leave records, pay rates and variations, payroll register, deductions/withholding settings, super inputs, opening/closing liability balances and evidence of liability payments or adjustments. Use a payment-summary total for reconciliation; bank account details are unnecessary.
 
 ## Workflow
 

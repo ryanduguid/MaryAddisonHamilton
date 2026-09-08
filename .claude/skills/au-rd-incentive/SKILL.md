@@ -7,7 +7,7 @@ description: "Use when preparing Australian R&D activity records and expenditure
 
 ## Inputs
 
-Company and group facts, project plans, contemporaneous hypotheses and experiments, results, activity dates/locations, staff time, supplier invoices, grant/reimbursement records, registration history and related-party payments.
+Company and group facts, project plans, contemporaneous hypotheses and experiments, results, activity dates/locations, staff time and payroll costs, supplier invoices, project expenditure ledger, grant/reimbursement records, registration history and related-party payments.
 
 ## Workflow
 
