@@ -49,7 +49,34 @@ That installs into the current project (`./.claude/skills/`). Add `-g` to instal
 `~/.claude/skills` instead, `-a claude-code` to target one agent, and `-l` to list the skills
 without installing anything.
 
-### By hand
+### Unreleased Australian topic expansion
+
+The `codex/australian-skill-coverage` branch contains 50 skills, including
+31 new Australian preparation workflows. To try that branch in a separate
+project, clone it and install the local checkout:
+
+```bash
+git clone --branch codex/australian-skill-coverage https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-source
+npx --yes skills@1.5.22 add ./accounting-skills-source --agent codex claude-code --skill '*' --yes --copy
+```
+
+This installs into the current project. Use a separate project to avoid
+overwriting skills already installed there. The command copies all 50 skills
+into the Codex and Claude Code project directories; it does not install them
+globally.
+
+On 8 September 2026, installation from a checkout at
+`63967e8b14929a718621f6fb9c655fb6e6987b7f` produced 50 skills in each target
+directory, with every installed skill and supporting file matching the source.
+Skills CLI 1.5.22 rejected a GitHub tree URL containing that raw commit SHA
+because it attempted to clone it as a branch. Use the checkout method above.
+
+The [GitHub verification run](https://github.com/ryanduguid/australian-accounting-skills/actions/runs/34200334270)
+for that commit passed lint, shared conformance and verification on Python
+3.10, 3.12 and 3.13. Installation proves the files are delivered correctly;
+it does not establish fresh agent behaviour or validate current tax law.
+
+### Manual copy
 
 Copy the skills you want into your project or user skills directory:
 
