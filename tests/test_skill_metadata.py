@@ -17,8 +17,8 @@ SKILLS_DIRECTORY = REPOSITORY / ".claude" / "skills"
 ALLOWED_FRONT_MATTER_FIELDS = {"name", "description"}
 # Published releases and the skill inventory each one shipped. A version string
 # that already labels a release must never label a second, different inventory.
-RELEASED_INVENTORIES = {"0.1.5": 9, "0.2.0": 19}
-INVENTORY_WORDS = {9: "nine", 19: "nineteen"}
+RELEASED_INVENTORIES = {"0.1.5": 9, "0.2.0": 19, "0.2.1": 19}
+INVENTORY_WORDS = {9: "nine", 19: "nineteen", 50: "fifty"}
 # Every spelling the skills use to open a dated primary-source list. Two are in
 # the tree: the inline "Primary sources (checked 20 August 2026):" lead-in
 # (cashflow-forecast-13week, month-end-close, stp-finalisation) and the

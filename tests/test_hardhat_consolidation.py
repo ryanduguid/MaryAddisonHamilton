@@ -34,7 +34,7 @@ class HardhatConsolidationTests(unittest.TestCase):
                 self.assertNotIn(b"\r", canonical)
                 self.assertEqual(hashlib.sha256(canonical).hexdigest(), expected_hash)
 
-    def test_marketplace_exposes_the_complete_nineteen_skill_inventory(self) -> None:
+    def test_marketplace_exposes_the_complete_fifty_skill_inventory(self) -> None:
         marketplace = json.loads(
             (REPOSITORY / ".claude-plugin" / "marketplace.json").read_text(
                 encoding="utf-8"
@@ -47,7 +47,7 @@ class HardhatConsolidationTests(unittest.TestCase):
             path.parent.name for path in SKILLS.glob("*/SKILL.md")
         }
         self.assertEqual(declared, discovered)
-        self.assertEqual(len(discovered), 19)
+        self.assertEqual(len(discovered), 50)
         self.assertLessEqual(set(TRANSFERRED_SKILL_HASHES), discovered)
 
     def test_transition_record_preserves_replace_then_remove_order(self) -> None:

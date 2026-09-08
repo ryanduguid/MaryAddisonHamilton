@@ -22,6 +22,45 @@
 | `coal-lsl-levy` | Prepare Coal LSL coverage, levy, reimbursement and payroll tie-outs |
 | `contracting-exports` | Validate the job, claim, plant, payroll and subcontractor exports the contracting skills consume |
 
+## Australian topic additions
+
+The [coverage map](au-guide-coverage.md) explains which of the 38 upstream
+topics reuse existing skills and which have original new workflows.
+
+| Skill | Use it for |
+| --- | --- |
+| [`au-bookkeeping`](../.claude/skills/au-bookkeeping/SKILL.md) | Bookkeeping intake and coding review |
+| [`au-business-formation`](../.claude/skills/au-business-formation/SKILL.md) | Business formation preparation checklist |
+| [`au-capital-gains`](../.claude/skills/au-capital-gains/SKILL.md) | Capital gains workpaper |
+| [`au-company-tax`](../.claude/skills/au-company-tax/SKILL.md) | Company tax workpapers |
+| [`au-crypto-tax`](../.claude/skills/au-crypto-tax/SKILL.md) | Crypto transaction reconciliation |
+| [`au-deceased-estates`](../.claude/skills/au-deceased-estates/SKILL.md) | Deceased estate tax workpapers |
+| [`au-financial-statements`](../.claude/skills/au-financial-statements/SKILL.md) | Financial statement preparation pack |
+| [`au-foreign-income`](../.claude/skills/au-foreign-income/SKILL.md) | Foreign income and tax-offset workpapers |
+| [`au-forex-review`](../.claude/skills/au-forex-review/SKILL.md) | Foreign currency tax reconciliation |
+| [`au-gst-property`](../.claude/skills/au-gst-property/SKILL.md) | Property GST review pack |
+| [`au-gst-registration-review`](../.claude/skills/au-gst-registration-review/SKILL.md) | GST registration and classification review |
+| [`au-individual-return`](../.claude/skills/au-individual-return/SKILL.md) | Individual return preparation pack |
+| [`au-land-tax`](../.claude/skills/au-land-tax/SKILL.md) | State land tax assessment review |
+| [`au-medicare-review`](../.claude/skills/au-medicare-review/SKILL.md) | Medicare levy and surcharge workpapers |
+| [`au-nonresident-cgt`](../.claude/skills/au-nonresident-cgt/SKILL.md) | Non-resident CGT review pack |
+| [`au-not-for-profit`](../.claude/skills/au-not-for-profit/SKILL.md) | Not-for-profit tax status review pack |
+| [`au-partnership-tax`](../.claude/skills/au-partnership-tax/SKILL.md) | Partnership tax workpapers |
+| [`au-payroll-review`](../.claude/skills/au-payroll-review/SKILL.md) | Pay-run preparation review |
+| [`au-psi-review`](../.claude/skills/au-psi-review/SKILL.md) | Personal services income review pack |
+| [`au-rd-incentive`](../.claude/skills/au-rd-incentive/SKILL.md) | R&D Tax Incentive evidence pack |
+| [`au-rental-property`](../.claude/skills/au-rental-property/SKILL.md) | Rental property workpapers |
+| [`au-return-amendment`](../.claude/skills/au-return-amendment/SKILL.md) | Individual return amendment review |
+| [`au-small-business-cgt`](../.claude/skills/au-small-business-cgt/SKILL.md) | Small business CGT concession review |
+| [`au-smsf-year-end`](../.claude/skills/au-smsf-year-end/SKILL.md) | SMSF annual workpaper preparation |
+| [`au-sole-trader`](../.claude/skills/au-sole-trader/SKILL.md) | Sole trader tax workpapers |
+| [`au-tax-planning-review`](../.claude/skills/au-tax-planning-review/SKILL.md) | Tax planning evidence and options |
+| [`au-tax-rates-verification`](../.claude/skills/au-tax-rates-verification/SKILL.md) | Tax-period source register |
+| [`au-tax-residency`](../.claude/skills/au-tax-residency/SKILL.md) | Tax residency and departure review pack |
+| [`au-transfer-duty`](../.claude/skills/au-transfer-duty/SKILL.md) | State transfer duty review pack |
+| [`au-transfer-pricing`](../.claude/skills/au-transfer-pricing/SKILL.md) | Transfer pricing evidence pack |
+| [`au-trust-distributions`](../.claude/skills/au-trust-distributions/SKILL.md) | Trust distribution review pack |
+
 Also included:
 
 - [`templates/firm-CLAUDE.md.example`](../templates/firm-CLAUDE.md.example): a starter `CLAUDE.md` for an accounting firm's repo.
