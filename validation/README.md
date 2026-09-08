@@ -1,6 +1,6 @@
 # Fabricated regression validation
 
-The 17 cards in `cases/` test workflow quality, provenance and restraint.
+The 48 cards in `cases/` test workflow quality, provenance and restraint.
 They are fabricated Markdown scenarios, not de-identified client examples. No
 real or realistic client name, individual, contact detail, ABN, TFN, bank
 detail, credential, ledger export or derived client data belongs here.
@@ -60,8 +60,42 @@ law claim, unverified source or guess.
 | [Payroll-tax contractor characterisation](cases/payroll-tax-contractor-characterisation.md) | payroll-tax-contractors, contractor-super-tpar |
 | [Contracting export manifest and rounding](cases/export-manifest-rounding.md) | contracting-exports |
 | [Standalone skill safety boundary](cases/standalone-skill-safety-boundary.md) | all ten transferred contracting skills installed independently |
+| [Bookkeeping intake and coding review: missing evidence](cases/au-bookkeeping-missing-evidence.md) | au-bookkeeping |
+| [Business formation preparation checklist: missing evidence](cases/au-business-formation-missing-evidence.md) | au-business-formation |
+| [Capital gains workpaper: missing evidence](cases/au-capital-gains-missing-evidence.md) | au-capital-gains |
+| [Company tax workpapers: missing evidence](cases/au-company-tax-missing-evidence.md) | au-company-tax |
+| [Crypto transaction reconciliation: missing evidence](cases/au-crypto-tax-missing-evidence.md) | au-crypto-tax |
+| [Deceased estate tax workpapers: missing evidence](cases/au-deceased-estates-missing-evidence.md) | au-deceased-estates |
+| [Financial statement preparation pack: missing evidence](cases/au-financial-statements-missing-evidence.md) | au-financial-statements |
+| [Foreign income and tax-offset workpapers: missing evidence](cases/au-foreign-income-missing-evidence.md) | au-foreign-income |
+| [Foreign currency tax reconciliation: missing evidence](cases/au-forex-review-missing-evidence.md) | au-forex-review |
+| [Property GST review pack: missing evidence](cases/au-gst-property-missing-evidence.md) | au-gst-property |
+| [GST registration and classification review: missing evidence](cases/au-gst-registration-review-missing-evidence.md) | au-gst-registration-review |
+| [Individual return preparation pack: missing evidence](cases/au-individual-return-missing-evidence.md) | au-individual-return |
+| [State land tax assessment review: missing evidence](cases/au-land-tax-missing-evidence.md) | au-land-tax |
+| [Medicare levy and surcharge workpapers: missing evidence](cases/au-medicare-review-missing-evidence.md) | au-medicare-review |
+| [Non-resident CGT review pack: missing evidence](cases/au-nonresident-cgt-missing-evidence.md) | au-nonresident-cgt |
+| [Not-for-profit tax status review pack: missing evidence](cases/au-not-for-profit-missing-evidence.md) | au-not-for-profit |
+| [Partnership tax workpapers: missing evidence](cases/au-partnership-tax-missing-evidence.md) | au-partnership-tax |
+| [Pay-run preparation review: missing evidence](cases/au-payroll-review-missing-evidence.md) | au-payroll-review |
+| [Personal services income review pack: missing evidence](cases/au-psi-review-missing-evidence.md) | au-psi-review |
+| [R&D Tax Incentive evidence pack: missing evidence](cases/au-rd-incentive-missing-evidence.md) | au-rd-incentive |
+| [Rental property workpapers: missing evidence](cases/au-rental-property-missing-evidence.md) | au-rental-property |
+| [Individual return amendment review: missing evidence](cases/au-return-amendment-missing-evidence.md) | au-return-amendment |
+| [Small business CGT concession review: missing evidence](cases/au-small-business-cgt-missing-evidence.md) | au-small-business-cgt |
+| [SMSF annual workpaper preparation: missing evidence](cases/au-smsf-year-end-missing-evidence.md) | au-smsf-year-end |
+| [Sole trader tax workpapers: missing evidence](cases/au-sole-trader-missing-evidence.md) | au-sole-trader |
+| [Tax planning evidence and options: missing evidence](cases/au-tax-planning-review-missing-evidence.md) | au-tax-planning-review |
+| [Tax-period source register: missing evidence](cases/au-tax-rates-verification-missing-evidence.md) | au-tax-rates-verification |
+| [Tax residency and departure review pack: missing evidence](cases/au-tax-residency-missing-evidence.md) | au-tax-residency |
+| [State transfer duty review pack: missing evidence](cases/au-transfer-duty-missing-evidence.md) | au-transfer-duty |
+| [Transfer pricing evidence pack: missing evidence](cases/au-transfer-pricing-missing-evidence.md) | au-transfer-pricing |
+| [Trust distribution review pack: missing evidence](cases/au-trust-distributions-missing-evidence.md) | au-trust-distributions |
 
-Together the cards cover all 19 distributable skills.
+Together the cards cover all 50 distributable skills. The 31 new cards are
+missing-evidence cases, one per new Australian workflow. Static validation
+checks their structure and inventory; no fresh agent run of these additions
+has been recorded. The existing recorded run covers the original 17 cards.
 
 ## Static checks
 

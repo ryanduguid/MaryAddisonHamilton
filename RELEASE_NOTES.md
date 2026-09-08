@@ -1,3 +1,15 @@
+# v0.3.0 (unreleased)
+
+Adds 31 original Australian preparation skills, bringing the pack to fifty.
+The coverage map accounts for 38 OpenAccountants topic names while reusing
+existing BAS, FBT, Division 7A and super workflows. Guide bodies were not
+copied. Each addition includes a source-discovery record and a fabricated
+missing-evidence case.
+
+The new skills require applicable primary authority at use time; source
+discovery is not current-law approval. No fresh agent evaluation of these
+31 additions is recorded. The original 19 skill bodies remain unchanged.
+
 # v0.2.1
 
 Changes since the last published release, `v0.2.0`. The inventory is the same
