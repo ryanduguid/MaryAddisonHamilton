@@ -16,7 +16,7 @@ The other skills in this pack assume clean, period-locked inputs. This skill is 
 5. Payroll register in two cuts for the same period, by employee and by job or cost code, each carrying the work state or site the sibling skills ask for
 6. Subcontractor payment listing: payee, ABN, invoice and payment dates, gross paid, GST, retention withheld, labour versus materials split
 7. Trial balance as at period end, which is the control total everything else ties to
-8. For each export: the source system, the exact export settings used (basis, date range, and whether draft or unapproved transactions were included), who ran it, and the row count shown on screen when it was run
+8. For each export: the source system, export timestamp, exact settings (basis, date range, filters and inclusion of draft or unapproved transactions), who ran it, and the row count shown on screen. Request only the fields needed for this task; retain supplied synthetic labels for a demonstration.
 
 ## Workflow
 
@@ -26,7 +26,8 @@ The other skills in this pack assume clean, period-locked inputs. This skill is 
 4. **Establish the sign and subtotal conventions from the file itself before summing anything.** Do not assume a convention: check whether the export signs by natural balance, minus-signs one side, or brackets negatives, and confirm the reading against a row whose direction you already know. Group, subtotal and total rows are interleaved with detail rows in many job reports, so filter to detail rows or you will double count. A tracking-dimension column can be absent altogether, so code for its absence rather than requiring it.
 5. **Run the completeness checks.** Job P&L revenue and cost totals equal the same accounts on the trial balance for the period. The subcontractor listing reconciles to the subcontractor cost and retention accounts once GST is removed and, on an accrual ledger, opening and closing payables are bridged; list any residual difference as a reconciling item. Payroll by employee total equals payroll by job total for the same period, to the cent. Plant docket hours reconcile to the internal hire recharge posted to jobs, where such a recharge is run. Compare each export's row count to the on-screen count recorded at export, and if that count was not captured, record the check as not performed.
 6. **Check dimension hygiene across the set.** List unassigned or blank job codes, jobs with movement that are flagged closed in the job master, jobs present in one export and missing from another, and payroll rows with no work state. Report these as exceptions with amounts; do not reallocate them yourself.
-7. **Save with provenance and file the export set.** Use `{entity}-{export}-{period-end YYYY-MM-DD}-{basis}.csv`, store outside any git repository, and record the source system, export settings, on-screen row count and who ran it alongside the files.
+7. **Prepare the export manifest.** Record the source, period, basis, timestamp, filters, export footer total and workpaper total. Mark each missing field as not supplied and request it; a missing timestamp leaves the manifest incomplete. Calculate the difference and retain it as an exception until a documented rounding policy and bridge explain it. A small difference is not evidence of rounding. Any filter change requires a re-export before repeating the tie-out. Keep status as pending authorised review.
+8. **Save with provenance and file the export set.** Use `{entity}-{export}-{period-end YYYY-MM-DD}-{basis}.csv`, store outside any git repository, and retain the manifest, on-screen row count and operator record alongside the files.
 
 ## Checks before handing over
 
@@ -35,6 +36,7 @@ The other skills in this pack assume clean, period-locked inputs. This skill is 
 - Payroll by employee equals payroll by job for the period
 - Detail rows only were summed, with subtotal and total rows excluded and the exclusion documented
 - Row-count check performed against the on-screen figure, or explicitly recorded as not performed
+- Missing manifest fields and unexplained differences remain exceptions pending authorised review; no rounding adjustment, recode or period lock is authorised
 - Unassigned dimensions, closed-job movement and missing work states listed as exceptions rather than silently fixed
 
 ## Portable safety boundary

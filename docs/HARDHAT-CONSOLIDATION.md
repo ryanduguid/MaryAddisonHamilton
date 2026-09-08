@@ -2,10 +2,10 @@
 
 This pack became the owner of the ten contracting skills transferred from
 `ryanduguid/hardhat-ledger`. The integration source is immutable commit
-`eb3b8a6ba47dfcdc05cea434f2f6a7dba82f96ef`. Every transferred `SKILL.md`
-matches that commit after canonical LF normalisation. Destination-owned source
-indexes, discovery metadata and validation cards sit beside those unchanged
-definitions.
+`eb3b8a6ba47dfcdc05cea434f2f6a7dba82f96ef`. At transfer, every `SKILL.md`
+matched that commit after canonical LF normalisation. The table preserves
+that original inventory. Later destination-owned amendments are recorded
+separately below; the other definitions still match their transferred bytes.
 
 The `v0.2.0` destination release was published and verified on 2 September
 2026, and `ryanduguid/hardhat-ledger` was archived on 3 September 2026. That
@@ -31,6 +31,16 @@ The reviewed legal and tax source record is retained in
 [`source-review-2026-08-15.md`](source-review-2026-08-15.md). Its conclusions
 remain bounded by the copied skills' use-time source checks and human-review
 gates.
+
+## Destination-owned amendments
+
+On 9 September 2026, `contracting-exports` gained explicit manifest timestamp,
+filter, total and rounding-bridge requirements, including re-export after a
+filter change and pending authorised review. This responds to the recorded
+`export-manifest-rounding` failure; fresh model verification is pending.
+Its amended canonical SHA-256 is
+`07caf7a2e2aacc371ec6693e56fbd3e3b7679381b72abeb4a6de5f4e671adf6f`.
+The transfer hash above remains the historical source record.
 
 ## Migration order
 
