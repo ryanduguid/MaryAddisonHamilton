@@ -24,11 +24,22 @@ TRANSFERRED_SKILL_HASHES = {
     "wip-over-under-billing": "c1aa5c432c41a5ac79ab384ce5ab7e472a555b6825faa01536e6e01aae8270b1",
 }
 
+# Destination-owned changes are recorded separately from the original transfer.
+AMENDED_SKILL_HASHES = {
+    "contracting-exports": "07caf7a2e2aacc371ec6693e56fbd3e3b7679381b72abeb4a6de5f4e671adf6f",
+}
+
 
 class HardhatConsolidationTests(unittest.TestCase):
-    def test_transferred_skill_bytes_match_the_reviewed_source_commit(self) -> None:
+    def test_skill_bytes_match_the_transfer_or_documented_amendment(self) -> None:
+        record = (REPOSITORY / "docs" / "HARDHAT-CONSOLIDATION.md").read_text(
+            encoding="utf-8"
+        )
         for name, expected_hash in TRANSFERRED_SKILL_HASHES.items():
             with self.subTest(skill=name):
+                self.assertIn(expected_hash, record)
+                expected_hash = AMENDED_SKILL_HASHES.get(name, expected_hash)
+                self.assertIn(expected_hash, record)
                 content = (SKILLS / name / "SKILL.md").read_bytes()
                 canonical = content.replace(b"\r\n", b"\n")
                 self.assertNotIn(b"\r", canonical)

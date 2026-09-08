@@ -49,14 +49,26 @@ That installs into the current project (`./.claude/skills/`). Add `-g` to instal
 `~/.claude/skills` instead, `-a claude-code` to target one agent, and `-l` to list the skills
 without installing anything.
 
+### Tagged nineteen-workflow release
+
+For v0.2.1, use a separate project and install from a checkout of that tag:
+
+```bash
+git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-release
+npx --yes skills@1.5.22 add ./accounting-skills-release --agent codex claude-code --skill '*' --yes --copy
+```
+
+This copies the nineteen released workflows into the current project. It does
+not install the fifty-skill development inventory or update a global install.
+
 ### Unreleased Australian topic expansion
 
-The `codex/australian-skill-coverage` branch contains 50 skills, including
-31 new Australian preparation workflows. To try that branch in a separate
+The default `main` branch contains 50 skills, including
+31 new Australian preparation workflows. To try that revision in a separate
 project, clone it and install the local checkout:
 
 ```bash
-git clone --branch codex/australian-skill-coverage https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-source
+git clone --branch main https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-source
 npx --yes skills@1.5.22 add ./accounting-skills-source --agent codex claude-code --skill '*' --yes --copy
 ```
 

@@ -4,7 +4,7 @@
 set -euo pipefail
 
 REPO="ryanduguid/australian-accounting-skills"
-DESCRIPTION="Claude Code and Codex skills for Australian practice and contracting workflows. Not lodgment."
+DESCRIPTION="Australian practice and contracting workflow skills: 19 in v0.2.1; 50 on main preparing v0.3.0. Prep and review aids, not lodgment."
 HOMEPAGE="https://duguid.com.au/tools/australian-tax-ai-agents/"
 TOPICS=(
   accounting

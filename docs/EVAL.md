@@ -49,6 +49,19 @@ and `fail`, so adding a card means adding it to the schema in the same change. S
 the checker, as `validation/README.md` describes, because it verifies the
 tracked inventory.
 
+## Current evidence and rerun
+
+The [8 September Codex run](../validation/results/2026-09-08-codex.json)
+records 16 passes out of 17 cases, with `export-manifest-rounding` failing.
+The contracting export skill now explicitly requires the timestamp, filters,
+both totals, a documented rounding bridge and re-export after a filter change.
+The existing verdict remains unchanged. These wording changes have not yet
+been evaluated in a fresh model session.
+
+Rerun the failed card and then the full validation pack at the exact revised
+commit, using the process above. Preserve the twelve-cent exception and missing
+evidence in the failed card. Static validation does not establish model behaviour.
+
 ## Boundary
 
 A recorded pass says a model handled a fabricated scenario within the
