@@ -38,9 +38,42 @@ On 9 September 2026, `contracting-exports` gained explicit manifest timestamp,
 filter, total and rounding-bridge requirements, including re-export after a
 filter change and pending authorised review. This responds to the recorded
 `export-manifest-rounding` failure; fresh model verification is pending.
-Its amended canonical SHA-256 is
+Its canonical SHA-256 after that amendment was
 `07caf7a2e2aacc371ec6693e56fbd3e3b7679381b72abeb4a6de5f4e671adf6f`.
+
+Later on 9 September 2026, its client-data boundary stopped accepting ignore
+coverage as the safeguard for where exports and generated output may be
+written, and now requires a location outside every version-control checkout.
+The skill already forbade a repository fallback in its portable safety
+boundary, so the earlier wording contradicted the same file two sections
+above it. Its amended canonical SHA-256 is
+`d39b1a6479b6f73d373b51841555e8ef276135b9879594a2064c0a69cdbec3f4`.
 The transfer hash above remains the historical source record.
+
+Later still on 9 September 2026, the same client-data boundary was carried
+across the other nine transferred skills, which had kept the earlier wording.
+Monthly Close Controls is gaining a guard that refuses any output path beneath
+a checkout marker outright, so a skill that asked only for output kept out of
+version control could send an agent to a path the command then rejects. That
+behaviour is proposed in
+[accounting-review-pipeline PR 134](https://github.com/ryanduguid/accounting-review-pipeline/pull/134),
+read on 9 September 2026, and is in no released version of `close-control` yet.
+Re-check the release actually installed before relying on it. The table records
+their amended canonical SHA-256 values.
+
+| Skill | Amended SHA-256 |
+| --- | --- |
+| `coal-lsl-levy` | `6b49ab510a171517a7385e4bf019fba4e57fcf162ebe4edaaf0da3b261721a12` |
+| `contract-cost-tracking` | `b68116aa00a401d8934fe50490ea4361f7e4e176d717e1695e6486873be4493a` |
+| `contractor-super-tpar` | `8cc6dfaf4181c6b1be86fc269b39415fb0db58639e12c58d6300fd723a2e1b0c` |
+| `fuel-tax-credits` | `ef2641203848f74e4cb882eba811d97cc62255431ff7b059715a2b55f6e5ab3e` |
+| `payroll-tax-contractors` | `e3ac75e4813a530aa8e3c89840309f84ca531dbc035e582512bcb6ff3fcd3124` |
+| `plant-and-equipment-costing` | `4893bbed2aab75f01a4ffe21491a9b65985b35c335d21bf6069c81fdc7679f78` |
+| `progress-claim-preparation` | `e809b5ba58abaea107c38b02ef734524cf95d293b562a6e7125fa033b5d95392` |
+| `retention-schedule` | `356d4bf0689d480bd467a87ab7256ac071ca5e1c4f128c79c77757a0d9245c52` |
+| `wip-over-under-billing` | `554f05d8c6f8b3d7fb2704e192b04ef5dca9ee7d039d424a4bb56596334355a6` |
+
+Their transfer hashes above remain the historical source record.
 
 ## Migration order
 
