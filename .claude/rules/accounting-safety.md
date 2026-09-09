@@ -17,8 +17,11 @@ individual skill remains the detailed procedure.
    client data out of this repository and unapproved cloud prompts; exclude
    TFNs and any identifier the task does not require.
 5. Put generated client output only in the firm-approved secure location. If a
-   repo-adjacent path is proposed, ask first, confirm it is already excluded
-   from version control and do not edit `.gitignore` without explicit approval.
+   path beside a checkout is proposed, ask first and confirm it is outside every
+   version-control checkout, not merely ignored by one. An ignore entry is a
+   convention the next commit can waive, and it does nothing about the copy
+   already sitting in the working tree. Do not edit `.gitignore` without
+   explicit approval.
 6. A reconciliation is complete only when its source, period, basis, settings
    and rounding treatment are documented. An unresolved difference remains a
    reviewer-facing exception.
