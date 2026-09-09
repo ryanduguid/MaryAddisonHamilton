@@ -27,7 +27,7 @@ If the folder is a BAS, month-end, or year-end pack using the filenames [Workpap
 
 ## Output
 
-The tie-out matrix plus the exceptions list. The agreed-scope tie-out is complete only when every row has source/version metadata, recalculations and rounding bridges are documented, and unresolved matters remain visible for review. Use the firm-approved secure client-data location. If none is configured, ask before creating a repo-adjacent path. Confirm the selected path is already excluded from version control; do not change `.gitignore`, output locations or repository configuration without explicit approval.
+The tie-out matrix plus the exceptions list. The agreed-scope tie-out is complete only when every row has source/version metadata, recalculations and rounding bridges are documented, and unresolved matters remain visible for review. Use the firm-approved secure client-data location. If none is configured, ask before creating a path beside a checkout. Confirm the selected path is outside every version-control checkout, not merely ignored by one; do not change `.gitignore`, output locations or repository configuration without explicit approval.
 
 ## Boundaries
 

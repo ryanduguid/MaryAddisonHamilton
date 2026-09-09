@@ -49,7 +49,7 @@ Primary sources (checked 20 August 2026):
 
 ## Output
 
-The 13-week grid, a dated assumptions log, and a narrative stating the base and stress trough weeks and amounts, available options, decision owner and status. Use the firm-approved secure client-data location. If none is configured, ask before creating a repo-adjacent path. Confirm the selected path is already excluded from version control; do not change `.gitignore`, output locations or repository configuration without explicit approval.
+The 13-week grid, a dated assumptions log, and a narrative stating the base and stress trough weeks and amounts, available options, decision owner and status. Use the firm-approved secure client-data location. If none is configured, ask before creating a path beside a checkout. Confirm the selected path is outside every version-control checkout, not merely ignored by one; do not change `.gitignore`, output locations or repository configuration without explicit approval.
 
 ## Checks before handing over
 

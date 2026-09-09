@@ -84,7 +84,7 @@ report run with different column settings changes the set, so match by name.
 
 ## File conventions
 
-`{entity}-{report}-{period-end YYYY-MM-DD}-{basis}.csv`, saved in the firm-approved secure client-data location outside version control. If a repo-adjacent path is proposed, ask first and confirm it is already excluded. Do not change `.gitignore`, output locations or repository configuration without explicit approval.
+`{entity}-{report}-{period-end YYYY-MM-DD}-{basis}.csv`, saved in the firm-approved secure client-data location outside version control. If a path beside a checkout is proposed, ask first and confirm it is outside every version-control checkout, not merely ignored by one. Do not change `.gitignore`, output locations or repository configuration without explicit approval.
 
 ## What the API can and cannot fetch
 
