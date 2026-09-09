@@ -231,19 +231,29 @@ class SafetyControlTests(unittest.TestCase):
                     )
 
     def test_a_path_beside_a_checkout_must_be_outside_every_checkout(self) -> None:
+        # The shared rule carries the same phrase and is where the requirement
+        # is defined, so scanning only the skills would let the canonical text
+        # lose it while every copy still passed. Both phrases are matched on
+        # whitespace-collapsed text, because the rule wraps the requirement
+        # across two lines and a line break must not hide a sentence that is
+        # there.
+        instructions = sorted(
+            (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")
+        ) + [REPOSITORY / ".claude" / "rules" / "accounting-safety.md"]
+        unwrapped = {
+            path: " ".join(path.read_text(encoding="utf-8").split())
+            for path in instructions
+        }
         candidates = [
-            path
-            for path in sorted((REPOSITORY / ".claude" / "skills").glob("*/SKILL.md"))
-            if CHECKOUT_ADJACENT in path.read_text(encoding="utf-8")
+            path for path, text in unwrapped.items() if CHECKOUT_ADJACENT in text
         ]
         self.assertTrue(
-            candidates, "no skill discusses a client-output path beside a checkout"
+            candidates,
+            "no instruction discusses a client-output path beside a checkout",
         )
         for path in candidates:
-            with self.subTest(skill=path.parent.name):
-                self.assertIn(
-                    OUTSIDE_EVERY_CHECKOUT, path.read_text(encoding="utf-8")
-                )
+            with self.subTest(instructions=path.parent.name):
+                self.assertIn(OUTSIDE_EVERY_CHECKOUT, unwrapped[path])
 
     def test_shared_rule_keeps_consequential_actions_human_only(self) -> None:
         text = (
