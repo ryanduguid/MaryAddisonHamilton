@@ -52,10 +52,14 @@ The transfer hash above remains the historical source record.
 
 Later still on 9 September 2026, the same client-data boundary was carried
 across the other nine transferred skills, which had kept the earlier wording.
-Monthly Close Controls refuses any output path beneath a checkout marker
-outright, so a skill that asked only for output kept out of version control
-could send an agent to a path the command then rejects. Their amended
-canonical SHA-256 values are:
+Monthly Close Controls is gaining a guard that refuses any output path beneath
+a checkout marker outright, so a skill that asked only for output kept out of
+version control could send an agent to a path the command then rejects. That
+behaviour is proposed in
+[accounting-review-pipeline PR 134](https://github.com/ryanduguid/accounting-review-pipeline/pull/134),
+read on 9 September 2026, and is in no released version of `close-control` yet.
+Re-check the release actually installed before relying on it. The table records
+their amended canonical SHA-256 values.
 
 | Skill | Amended SHA-256 |
 | --- | --- |

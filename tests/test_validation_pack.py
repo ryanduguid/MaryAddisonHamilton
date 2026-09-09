@@ -30,8 +30,13 @@ OUTSIDE_EVERY_CHECKOUT = "outside every version-control checkout"
 # the location policy twice, once in its steps and once in the Client data
 # boundary, and the boundary is the copy that travels when the folder is
 # installed on its own.
+# Every inflection, because the passive "output kept out of version control" is
+# the form the consolidation record itself uses for the wording this replaces,
+# and a boundary rewritten that way would otherwise pass.
 OUT_OF_VERSION_CONTROL = re.compile(
-    r"\bkeep[^.\n]*\bout of version control\b", re.IGNORECASE
+    r"\bkeep(?:s|ing)?\b[^.\n]*\bout of version control\b"
+    r"|\bkept\b[^.\n]*\bout of version control\b",
+    re.IGNORECASE,
 )
 SCRIPT = REPOSITORY / "scripts" / "validate_validation.py"
 SPEC = importlib.util.spec_from_file_location("validate_validation", SCRIPT)
