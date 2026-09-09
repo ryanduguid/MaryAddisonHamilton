@@ -38,8 +38,16 @@ On 9 September 2026, `contracting-exports` gained explicit manifest timestamp,
 filter, total and rounding-bridge requirements, including re-export after a
 filter change and pending authorised review. This responds to the recorded
 `export-manifest-rounding` failure; fresh model verification is pending.
-Its amended canonical SHA-256 is
+Its canonical SHA-256 after that amendment was
 `07caf7a2e2aacc371ec6693e56fbd3e3b7679381b72abeb4a6de5f4e671adf6f`.
+
+Later on 9 September 2026, its client-data boundary stopped accepting ignore
+coverage as the safeguard for where exports and generated output may be
+written, and now requires a location outside every version-control checkout.
+The skill already forbade a repository fallback in its portable safety
+boundary, so the earlier wording contradicted the same file two sections
+above it. Its amended canonical SHA-256 is
+`d39b1a6479b6f73d373b51841555e8ef276135b9879594a2064c0a69cdbec3f4`.
 The transfer hash above remains the historical source record.
 
 ## Migration order

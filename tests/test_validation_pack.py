@@ -13,6 +13,18 @@ REPOSITORY = Path(__file__).resolve().parents[1]
 # The not-advice sentence has to travel with a single copied skill folder, so a
 # link back to the repository root does not count as one.
 INLINE_NOT_ADVICE = re.compile(r"not (?:tax|legal)[^.\n]*advice", re.IGNORECASE)
+# Ignore coverage is not a safeguard for client output: the entry is a
+# convention the next commit can waive, and it does nothing about the copy
+# already sitting in the working tree. These are the shapes that offer it as
+# one, as distinct from the many legitimate "do not change `.gitignore`" lines.
+IGNORE_AS_SAFEGUARD = re.compile(
+    r"`?\.gitignore`?\s+(?:blocks|covers|excludes|catches)"
+    r"|(?:already )?(?:excluded from|ignored by) version control"
+    r"|confirm[^.\n]*(?:is|are) ignored",
+    re.IGNORECASE,
+)
+CHECKOUT_ADJACENT = "beside a checkout"
+OUTSIDE_EVERY_CHECKOUT = "outside every version-control checkout"
 SCRIPT = REPOSITORY / "scripts" / "validate_validation.py"
 SPEC = importlib.util.spec_from_file_location("validate_validation", SCRIPT)
 if SPEC is None or SPEC.loader is None:  # pragma: no cover - import machinery guard
@@ -199,6 +211,38 @@ class SafetyControlTests(unittest.TestCase):
                     or "## Portable safety boundary" in text,
                     "the not-advice boundary must survive copying this folder out "
                     "of the repository, so a DISCLAIMER.md link alone is not enough",
+                )
+
+    def test_no_instruction_offers_ignore_coverage_as_the_output_safeguard(self) -> None:
+        instructions = sorted(
+            (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")
+        ) + [REPOSITORY / ".claude" / "rules" / "accounting-safety.md"]
+        for path in instructions:
+            with self.subTest(instructions=path.parent.name):
+                match = IGNORE_AS_SAFEGUARD.search(path.read_text(encoding="utf-8"))
+                if match is not None:
+                    self.fail(
+                        f"{path.relative_to(REPOSITORY)} offers ignore coverage as "
+                        f"the safeguard for client output ({match.group(0)!r}). An "
+                        "ignore entry is a convention the next commit can waive, "
+                        "and it does nothing about the copy already sitting in the "
+                        "working tree, so require a path outside every "
+                        "version-control checkout instead."
+                    )
+
+    def test_a_path_beside_a_checkout_must_be_outside_every_checkout(self) -> None:
+        candidates = [
+            path
+            for path in sorted((REPOSITORY / ".claude" / "skills").glob("*/SKILL.md"))
+            if CHECKOUT_ADJACENT in path.read_text(encoding="utf-8")
+        ]
+        self.assertTrue(
+            candidates, "no skill discusses a client-output path beside a checkout"
+        )
+        for path in candidates:
+            with self.subTest(skill=path.parent.name):
+                self.assertIn(
+                    OUTSIDE_EVERY_CHECKOUT, path.read_text(encoding="utf-8")
                 )
 
     def test_shared_rule_keeps_consequential_actions_human_only(self) -> None:

@@ -26,7 +26,7 @@ TRANSFERRED_SKILL_HASHES = {
 
 # Destination-owned changes are recorded separately from the original transfer.
 AMENDED_SKILL_HASHES = {
-    "contracting-exports": "07caf7a2e2aacc371ec6693e56fbd3e3b7679381b72abeb4a6de5f4e671adf6f",
+    "contracting-exports": "d39b1a6479b6f73d373b51841555e8ef276135b9879594a2064c0a69cdbec3f4",
 }
 
 
