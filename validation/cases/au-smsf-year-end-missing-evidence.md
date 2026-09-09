@@ -13,6 +13,10 @@ Synthetic Entity A supplies fabricated records for the task below. All records a
 
 A property valuation is stale and a related-party lease is missing. Preserve both exceptions and leave dependent balances or classifications unverified.
 
+One member also has an accumulation interest in another fund. Its contribution
+history and the member's preceding 30 June total super balance are unavailable.
+The member requests use of all unused concessional caps based on SMSF records alone.
+
 ## Task
 
 Use `au-smsf-year-end` to prepare the supported work and an unresolved-items hand-off.
@@ -26,6 +30,9 @@ Only the facts in the scenario are available. No additional source documents, am
 The evidence gap named in the scenario remains unavailable. No current legal rates, thresholds or deadlines are supplied. No external action is authorised.
 
 ## Required checks
+
+- Reconcile member contributions across funds and identify the missing other-fund records and preceding 30 June total super balance.
+- Leave concessional carry-forward eligibility unresolved. Keep any non-concessional bring-forward review separate, with its own trigger and period evidence.
 
 - Identify the scenario's missing evidence and the result that depends on it.
 - Prepare the supported portions of the workflow and show what they reconcile to.
