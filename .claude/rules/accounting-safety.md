@@ -18,7 +18,7 @@ individual skill remains the detailed procedure.
    TFNs and any identifier the task does not require.
 5. Put generated client output only in the firm-approved secure location. If a
    path beside a checkout is proposed, ask first and confirm it is outside every
-   version-control checkout, not merely ignored by one: an ignore entry is a
+   version-control checkout, not merely ignored by one. An ignore entry is a
    convention the next commit can waive, and it does nothing about the copy
    already sitting in the working tree. Do not edit `.gitignore` without
    explicit approval.
