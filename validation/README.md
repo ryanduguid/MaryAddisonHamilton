@@ -97,12 +97,12 @@ missing-evidence cases, one per new Australian workflow. Static validation
 checks their structure and inventory; no fresh agent run of these additions
 has been recorded. The existing recorded run covers the original 17 cards.
 
-The GST registration card now includes conditional turnover calculations and
-an unsupported capital-asset classification. It draws on questions raised by
+The GST registration card now includes a current-turnover reconciliation and
+missing capital-asset evidence that blocks projected turnover. It draws on questions raised by
 the Library's *GST / Registration*, paragraph 3-030, and *Claiming Input Tax
 Credits · Tax Invoices*. All figures were fabricated afresh. The author checked
 [GST Act Division 188, compilation dated 1 January 2026](https://www.legislation.gov.au/C2004A00446/latest/text)
-on 10 September 2026. That check does not replace the card's use-time source
+on 10 September 2026 (Australia/Sydney). That check does not replace the card's use-time source
 verification. No fresh model verdict has been recorded for the expanded card.
 
 ## Static checks

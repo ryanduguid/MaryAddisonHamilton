@@ -53,13 +53,14 @@ tax period, approval or determination is supplied.
   substitute. September belongs in both windows.
 - Verify GST Act ss 188-10, 188-15, 188-20 and 188-25 for the relevant period.
   Keep GST-free supplies distinct from input-taxed supplies in the reconciliation.
-- With authority verified, reconcile current turnover to 86,000.00. Show
-  projected turnover of 72,000.00 if the capital-asset exclusion is established,
-  or 92,000.00 if the machine was held for resale and no other exclusion applies.
-  These are conditional calculations, not a concluded classification.
-- Compare both measures to a verified applicable threshold. Where current
-  turnover reaches it but projected turnover is below it, address the
-  Commissioner's satisfaction condition in s 188-10(1)(a) for reviewer assessment.
+- With authority verified, reconcile current turnover to 86,000.00. Leave
+  projected turnover blank and `UNVERIFIED` while the machine's classification
+  evidence is missing. Identify the evidence needed to assess the projected
+  capital-asset exclusion; do not substitute a scenario total for that evidence.
+- Compare supported current turnover to a verified applicable threshold.
+  Identify what the reviewer needs to assess projected turnover and the
+  Commissioner's satisfaction condition in s 188-10(1)(a). Do not conclude
+  that projected turnover is below the threshold.
 - Preserve an explicit unverified status for registration and the purchase
   credit, with evidence needed, owner, status and next action. If authority
   cannot be verified, leave dependent conclusions unverified.
