@@ -13,7 +13,7 @@ REPOSITORY = Path(__file__).resolve().parents[1]
 # The not-advice sentence has to travel with a single copied skill folder, so a
 # link back to the repository root does not count as one.
 INLINE_NOT_ADVICE = re.compile(r"not (?:tax|legal)[^.\n]*advice", re.IGNORECASE)
-# Ignore coverage is not a safeguard for client output: the entry is a
+# Ignore coverage is not a safeguard for client output. The entry is a
 # convention the next commit can waive, and it does nothing about the copy
 # already sitting in the working tree. These are the shapes that offer it as
 # one, as distinct from the many legitimate "do not change `.gitignore`" lines.
