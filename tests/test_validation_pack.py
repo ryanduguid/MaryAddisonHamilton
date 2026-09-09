@@ -25,6 +25,14 @@ IGNORE_AS_SAFEGUARD = re.compile(
 )
 CHECKOUT_ADJACENT = "beside a checkout"
 OUTSIDE_EVERY_CHECKOUT = "outside every version-control checkout"
+# "Keep it out of version control" is the shorthand an ignore entry appears to
+# satisfy, so it reopens the hole the phrase above closes. Every skill states
+# the location policy twice, once in its steps and once in the Client data
+# boundary, and the boundary is the copy that travels when the folder is
+# installed on its own.
+OUT_OF_VERSION_CONTROL = re.compile(
+    r"\bkeep[^.\n]*\bout of version control\b", re.IGNORECASE
+)
 SCRIPT = REPOSITORY / "scripts" / "validate_validation.py"
 SPEC = importlib.util.spec_from_file_location("validate_validation", SCRIPT)
 if SPEC is None or SPEC.loader is None:  # pragma: no cover - import machinery guard
@@ -228,6 +236,27 @@ class SafetyControlTests(unittest.TestCase):
                         "and it does nothing about the copy already sitting in the "
                         "working tree, so require a path outside every "
                         "version-control checkout instead."
+                    )
+
+    def test_no_instruction_keeps_client_output_merely_out_of_version_control(
+        self,
+    ) -> None:
+        instructions = sorted(
+            (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")
+        ) + [REPOSITORY / ".claude" / "rules" / "accounting-safety.md"]
+        for path in instructions:
+            with self.subTest(instructions=path.parent.name):
+                match = OUT_OF_VERSION_CONTROL.search(
+                    " ".join(path.read_text(encoding="utf-8").split())
+                )
+                if match is not None:
+                    self.fail(
+                        f"{path.relative_to(REPOSITORY)} asks only that client "
+                        f"output be kept out of version control ({match.group(0)!r}). "
+                        "An ignored path inside a checkout reads as satisfying "
+                        "that, and Monthly Close Controls refuses such a path "
+                        "outright, so require one outside every version-control "
+                        "checkout instead."
                     )
 
     def test_a_path_beside_a_checkout_must_be_outside_every_checkout(self) -> None:
