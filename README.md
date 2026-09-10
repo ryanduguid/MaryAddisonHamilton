@@ -6,6 +6,8 @@ Synthetic example. Prep-only workflow aids. An authorised human reviews, decides
 
 Install the portable skill files: `npx skills add ryanduguid/australian-accounting-skills`
 
+This command resolves the default branch and installs the fifty-skill development inventory preparing v0.3.0. For the nineteen workflows in [v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1), follow the [tagged release installation](docs/installation.md#tagged-nineteen-workflow-release).
+
 An agent runtime is still required. Ask it to prepare the BAS workpaper from the supplied reports and show the GST control-account tie-out.
 
 **Output:** net GST of $3,190.00 ties to the $3,190.00 movement, with exceptions retained and reviewer sign-off blank.
@@ -21,7 +23,7 @@ An agent runtime is still required. Ask it to prepare the BAS workpaper from the
 
 Claude Code is the tested runtime. Codex packaging and portable skill files are included. That does not establish testing in every agent runtime.
 
-[v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1) contains nineteen practice and contracting workflows. This branch prepares v0.3.0 with fifty skills, including 31 new workflows. The command above resolves the default branch and therefore selects the fifty-skill development inventory. For the nineteen-workflow release, use the tagged installation path in [Installation](docs/installation.md), which also covers the Hardhat Ledger collision warning. See the [Australian topic coverage map](docs/au-guide-coverage.md) for the additions and verification limits.
+The development inventory adds 31 workflows to v0.2.1. See the [Australian topic coverage map](docs/au-guide-coverage.md) for the additions and verification limits, and [Installation](docs/installation.md) for the Hardhat Ledger collision warning.
 
 [CITATION.cff](CITATION.cff) remains pinned to v0.1.5, the original nine-skill practice pack. The [Hardhat consolidation record](docs/HARDHAT-CONSOLIDATION.md) explains the expanded inventory.
 
