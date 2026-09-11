@@ -14,7 +14,7 @@ profile **Customize your pins** dialog.
 
 skills.sh has no public submit API. `npx skills add ryanduguid/australian-accounting-skills`
 resolves the default branch. The v0.3.0 development inventory contains 50
-skills. Keep About copy evergreen; document versioned counts in the README and
+skills. Keep About copy evergreen. Document versioned counts in the README and
 installation guide. Verify the installed revision before advertising its count. Do not claim a skills.sh directory page until
 that host serves one for this repository. The index is install telemetry, not a
 form.

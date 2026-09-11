@@ -95,7 +95,7 @@ workaround.
 
 Original prose now uses Australian English `lodgement`. Official source titles,
 original transfer hashes and earlier amendment records remain intact. This changes
-spelling only; source-review dates, refusal rules and human authority stay as recorded.
+spelling only. Source-review dates, refusal rules and human authority stay as recorded.
 
 | Skill | Amended canonical SHA-256 |
 |---|---|
