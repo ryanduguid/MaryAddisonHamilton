@@ -10,6 +10,17 @@ The new skills require applicable primary authority at use time; source
 discovery is not current-law approval. No fresh agent evaluation of these
 31 additions is recorded. The original 19 skill bodies remain unchanged.
 
+The validation pack now has 51 cards, including three supported-arithmetic
+cases for bookkeeping, financial-statement mapping and payroll tie-outs.
+These check whether the model completes supported calculations while keeping
+statutory conclusions and approval with the responsible human. All 51 cards
+need confirmed results before release; the seventeen-card historical runs
+do not cover this expansion. The evaluation guide also requires separate
+evidence for source retrieval and behaviour with action tools available.
+
+The README recommends the tagged v0.2.1 installation. Development installation
+commands remain available for evaluating the unreleased fifty-skill pack.
+
 # v0.2.1
 
 Changes since the last published release, `v0.2.0`. The inventory is the same

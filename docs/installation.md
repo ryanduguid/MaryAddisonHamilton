@@ -1,6 +1,25 @@
 ## Install
 
-Pick the smallest path that matches what you need:
+### Tagged nineteen-workflow release
+
+Start with v0.2.1, the latest published release. From a separate project
+directory, install from a checkout of that tag:
+
+```bash
+git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-release
+npx --yes skills@1.5.22 add ./accounting-skills-release --agent codex claude-code --skill '*' --yes --copy
+```
+
+This copies all nineteen released workflows into the current project's Codex
+and Claude Code directories. It leaves global installations unchanged. A tag
+fixes the installed revision; it does not certify model outputs. The
+[evaluation guide](EVAL.md) records the tested revisions and limitations.
+
+### Development installations
+
+The options below resolve the default branch or installed repository revision.
+They can deliver unreleased changes, including the fifty-workflow inventory
+preparing v0.3.0. Choose them when you intend to test development work.
 
 | Need | Install | What you get |
 | --- | --- | --- |
@@ -48,18 +67,6 @@ npx skills add ryanduguid/australian-accounting-skills
 That installs into the current project (`./.claude/skills/`). Add `-g` to install into
 `~/.claude/skills` instead, `-a claude-code` to target one agent, and `-l` to list the skills
 without installing anything.
-
-### Tagged nineteen-workflow release
-
-For v0.2.1, use a separate project and install from a checkout of that tag:
-
-```bash
-git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-release
-npx --yes skills@1.5.22 add ./accounting-skills-release --agent codex claude-code --skill '*' --yes --copy
-```
-
-This copies the nineteen released workflows into the current project. It does
-not install the fifty-skill development inventory or update a global install.
 
 ### Unreleased Australian topic expansion
 
@@ -122,16 +129,8 @@ a subset by hand can break skills that call their siblings:
   reference, and the costing, claim, retention and WIP skills cross-reference
   each other
 
-Every command under [Install](#install) resolves the default branch, which may
-be ahead of the latest tag. To take the tagged 19-skill pack exactly as
-released and verified, install from the tag instead:
-
-```bash
-git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills australian-accounting-skills
-mkdir -p ~/.claude/skills
-cp -r australian-accounting-skills/.claude/skills/* ~/.claude/skills/
-```
-
-Install the full tagged pack so the expanded set stays consistent. The
+The [recommended installation](#tagged-nineteen-workflow-release) pins v0.2.1.
+The [development options](#development-installations) can be ahead of that tag.
+Install the full tagged pack so sibling references stay consistent. The
 nine-skill `v0.1.5` pack remains available from its tag for anyone who cites
 it.

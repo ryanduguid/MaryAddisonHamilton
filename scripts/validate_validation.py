@@ -23,12 +23,14 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATION = ROOT / "validation"
 EXPECTED_CASE_NAMES = {
     "au-bookkeeping-missing-evidence.md",
+    "au-bookkeeping-supported-reconciliation.md",
     "au-business-formation-missing-evidence.md",
     "au-capital-gains-missing-evidence.md",
     "au-company-tax-missing-evidence.md",
     "au-crypto-tax-missing-evidence.md",
     "au-deceased-estates-missing-evidence.md",
     "au-financial-statements-missing-evidence.md",
+    "au-financial-statements-supported-mapping.md",
     "au-foreign-income-missing-evidence.md",
     "au-forex-review-missing-evidence.md",
     "au-gst-property-missing-evidence.md",
@@ -40,6 +42,7 @@ EXPECTED_CASE_NAMES = {
     "au-not-for-profit-missing-evidence.md",
     "au-partnership-tax-missing-evidence.md",
     "au-payroll-review-missing-evidence.md",
+    "au-payroll-review-supported-tie-out.md",
     "au-psi-review-missing-evidence.md",
     "au-rd-incentive-missing-evidence.md",
     "au-rental-property-missing-evidence.md",

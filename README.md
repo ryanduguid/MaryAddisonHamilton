@@ -4,9 +4,14 @@ Synthetic example. Prep-only workflow aids. An authorised human reviews, decides
 
 **Input:** a fabricated quarterly cash-basis BAS with GST collected of $4,400.00 and GST paid of $1,210.00, plus the matching GST control-account movement.
 
-Install the portable skill files: `npx skills add ryanduguid/australian-accounting-skills`
+Install the nineteen workflows in [v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1) from a separate project directory:
 
-This command resolves the default branch and installs the fifty-skill development inventory preparing v0.3.0. For the nineteen workflows in [v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1), follow the [tagged release installation](docs/installation.md#tagged-nineteen-workflow-release).
+```bash
+git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-release
+npx --yes skills@1.5.22 add ./accounting-skills-release --agent codex claude-code --skill '*' --yes --copy
+```
+
+This copies the released skills into the current project's Codex and Claude Code directories. It does not change a global installation. See [installation and versioning](docs/installation.md) for details. The [fifty-workflow v0.3.0 development inventory](docs/installation.md#unreleased-australian-topic-expansion) is available separately; its 31 additions have no recorded model evaluation.
 
 An agent runtime is still required. Ask it to prepare the BAS workpaper from the supplied reports and show the GST control-account tie-out.
 
@@ -23,7 +28,7 @@ An agent runtime is still required. Ask it to prepare the BAS workpaper from the
 
 Claude Code is the tested runtime. Codex packaging and portable skill files are included. That does not establish testing in every agent runtime.
 
-The development inventory adds 31 workflows to v0.2.1. See the [Australian topic coverage map](docs/au-guide-coverage.md) for the additions and verification limits, and [Installation](docs/installation.md) for the Hardhat Ledger collision warning.
+The development installation resolves the default branch and adds 31 workflows to v0.2.1. See the [Australian topic coverage map](docs/au-guide-coverage.md) for the additions and verification limits, and [Installation](docs/installation.md) for the Hardhat Ledger collision warning.
 
 [CITATION.cff](CITATION.cff) remains pinned to v0.1.5, the original nine-skill practice pack. The [Hardhat consolidation record](docs/HARDHAT-CONSOLIDATION.md) explains the expanded inventory.
 

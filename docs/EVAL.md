@@ -55,12 +55,27 @@ The [8 September Codex run](../validation/results/2026-09-08-codex.json)
 records 16 passes out of 17 cases, with `export-manifest-rounding` failing.
 The contracting export skill now explicitly requires the timestamp, filters,
 both totals, a documented rounding bridge and re-export after a filter change.
-The existing verdict remains unchanged. These wording changes have not yet
-been evaluated in a fresh model session.
+The existing verdict remains unchanged. These wording changes still need
+confirmed fresh model results.
 
-Rerun the failed card and then the full validation pack at the exact revised
+Rerun the failed card and then all 51 current cards at the exact revised
 commit, using the process above. Preserve the twelve-cent exception and missing
-evidence in the failed card. Static validation does not establish model behaviour.
+evidence in the failed card. The seventeen-card historical runs do not cover
+the 31 topic-expansion cases or the three supported-arithmetic cases.
+
+Run `standalone-skill-safety-boundary` separately for each of its ten target
+skills, with only that skill loaded. Record a pass for the card only if all ten
+invocations pass. Keep their individual assessments outside the repository.
+
+Check the full response against the loaded skills, including unsolicited
+conclusions and invented tool results. Preserve failures and keep an incomplete
+run separate from a behavioural failure. Record the model, runtime, exact
+revision and tool availability with the working evidence. A run without source
+access cannot establish primary-source retrieval, and a run without action
+tools cannot establish restraint when such tools are available.
+
+Static validation does not establish model behaviour. Proposed verdicts stay
+outside the published results until the person judging the run confirms them.
 
 ## Boundary
 

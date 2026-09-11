@@ -1,6 +1,6 @@
 # Fabricated regression validation
 
-The 48 cards in `cases/` test workflow quality, provenance and restraint.
+The 51 cards in `cases/` test workflow quality, provenance and restraint.
 They are fabricated Markdown scenarios, not de-identified client examples. No
 real or realistic client name, individual, contact detail, ABN, TFN, bank
 detail, credential, ledger export or derived client data belongs here.
@@ -61,12 +61,14 @@ law claim, unverified source or guess.
 | [Contracting export manifest and rounding](cases/export-manifest-rounding.md) | contracting-exports |
 | [Standalone skill safety boundary](cases/standalone-skill-safety-boundary.md) | all ten transferred contracting skills installed independently |
 | [Bookkeeping intake and coding review: missing evidence](cases/au-bookkeeping-missing-evidence.md) | au-bookkeeping |
+| [Supported bookkeeping reconciliation](cases/au-bookkeeping-supported-reconciliation.md) | au-bookkeeping |
 | [Business formation preparation checklist: missing evidence](cases/au-business-formation-missing-evidence.md) | au-business-formation |
 | [Capital gains workpaper: missing evidence](cases/au-capital-gains-missing-evidence.md) | au-capital-gains |
 | [Company tax workpapers: missing evidence](cases/au-company-tax-missing-evidence.md) | au-company-tax |
 | [Crypto transaction reconciliation: missing evidence](cases/au-crypto-tax-missing-evidence.md) | au-crypto-tax |
 | [Deceased estate tax workpapers: missing evidence](cases/au-deceased-estates-missing-evidence.md) | au-deceased-estates |
 | [Financial statement preparation pack: missing evidence](cases/au-financial-statements-missing-evidence.md) | au-financial-statements |
+| [Supported trial-balance mapping](cases/au-financial-statements-supported-mapping.md) | au-financial-statements |
 | [Foreign income and tax-offset workpapers: missing evidence](cases/au-foreign-income-missing-evidence.md) | au-foreign-income |
 | [Foreign currency tax reconciliation: missing evidence](cases/au-forex-review-missing-evidence.md) | au-forex-review |
 | [Property GST review pack: missing evidence](cases/au-gst-property-missing-evidence.md) | au-gst-property |
@@ -78,6 +80,7 @@ law claim, unverified source or guess.
 | [Not-for-profit tax status review pack: missing evidence](cases/au-not-for-profit-missing-evidence.md) | au-not-for-profit |
 | [Partnership tax workpapers: missing evidence](cases/au-partnership-tax-missing-evidence.md) | au-partnership-tax |
 | [Pay-run preparation review: missing evidence](cases/au-payroll-review-missing-evidence.md) | au-payroll-review |
+| [Supported payroll arithmetic tie-out](cases/au-payroll-review-supported-tie-out.md) | au-payroll-review |
 | [Personal services income review pack: missing evidence](cases/au-psi-review-missing-evidence.md) | au-psi-review |
 | [R&D Tax Incentive evidence pack: missing evidence](cases/au-rd-incentive-missing-evidence.md) | au-rd-incentive |
 | [Rental property workpapers: missing evidence](cases/au-rental-property-missing-evidence.md) | au-rental-property |
@@ -92,10 +95,16 @@ law claim, unverified source or guess.
 | [Transfer pricing evidence pack: missing evidence](cases/au-transfer-pricing-missing-evidence.md) | au-transfer-pricing |
 | [Trust distribution review pack: missing evidence](cases/au-trust-distributions-missing-evidence.md) | au-trust-distributions |
 
-Together the cards cover all 50 distributable skills. The 31 new cards are
+Together the cards cover all 50 distributable skills. The 31 topic-expansion cards are
 missing-evidence cases, one per new Australian workflow. Static validation
 checks their structure and inventory; no fresh agent run of these additions
 has been recorded. The existing recorded run covers the original 17 cards.
+
+Three further cards check whether the model completes supported bank,
+trial-balance and payroll arithmetic while keeping professional decisions
+pending. Their supplied evidence is sufficient for the bounded arithmetic,
+not for a tax or compliance conclusion. They complement the missing-evidence
+cases and have no confirmed model verdicts yet.
 
 The GST registration card now includes a current-turnover reconciliation and
 missing capital-asset evidence that blocks projected turnover. It draws on questions raised by
