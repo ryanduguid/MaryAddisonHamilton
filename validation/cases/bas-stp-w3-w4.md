@@ -38,7 +38,7 @@ evidence. Do not lodge, amend, submit or alter the form.
 
 - No current label guidance is supplied.
 - No evidence says wages expense is the label source.
-- No authority approves lodgment or a form change.
+- No authority approves lodgement or a form change.
 
 ## Required checks
 

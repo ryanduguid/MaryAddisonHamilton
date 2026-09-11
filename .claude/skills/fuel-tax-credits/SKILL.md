@@ -5,7 +5,7 @@ description: "Use when preparing or reviewing an Australian fuel tax credit clai
 
 # Fuel Tax Credits
 
-Build a defensible fuel tax credit claim under the Fuel Tax Act 2006 (Cth) from fuel acquisitions and usage evidence. The output is a claim workpaper with the apportionment method documented and every litre traced to an acquisition date. Lodgment belongs to the registered agent.
+Build a defensible fuel tax credit claim under the Fuel Tax Act 2006 (Cth) from fuel acquisitions and usage evidence. The output is a claim workpaper with the apportionment method documented and every litre traced to an acquisition date. Lodgement belongs to the registered agent.
 
 ## Inputs needed
 

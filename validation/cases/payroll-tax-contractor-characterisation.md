@@ -30,7 +30,7 @@ Create a reviewer-facing characterisation register. Do not decide employment sta
 
 - No current official payroll-tax or superannuation source is supplied.
 - No evidence supports a contractor-versus-employee characterisation.
-- No authority approves a lodgment, TPAR, payment or journal.
+- No authority approves a lodgement, TPAR, payment or journal.
 
 ## Required checks
 

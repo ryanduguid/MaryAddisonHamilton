@@ -29,7 +29,7 @@ Create a reviewer-facing credit workpaper. Do not lodge a claim or treat site lo
 
 - No current official fuel-tax-credit rate or eligibility source is supplied.
 - No evidence splits litres between eligible and ineligible use.
-- No authority approves a BAS label, lodgment or payment.
+- No authority approves a BAS label, lodgement or payment.
 
 ## Required checks
 

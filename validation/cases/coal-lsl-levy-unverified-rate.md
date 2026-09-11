@@ -29,7 +29,7 @@ Create a reviewer-facing levy workpaper. Do not lodge a return or treat a rememb
 
 - No current official Coal LSL rate or coverage instrument is supplied.
 - No evidence confirms which workers are in the scheme for the period.
-- No authority approves a lodgment, payment or journal.
+- No authority approves a lodgement, payment or journal.
 
 ## Required checks
 

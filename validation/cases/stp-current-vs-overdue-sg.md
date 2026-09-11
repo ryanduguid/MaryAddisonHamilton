@@ -43,7 +43,7 @@ Synthetic Worker A differs between the payroll register and STP report.
 - No first-contribution, fund-change or s 18C allocation facts are supplied,
   so no allowable longer period is proven.
 - No evidence resolves the worker-level mismatch.
-- No declaration or lodgment authority is supplied.
+- No declaration or lodgement authority is supplied.
 
 ## Required checks
 
@@ -64,7 +64,7 @@ Synthetic Worker A differs between the payroll register and STP report.
 - Do not call a current item overdue solely because it remains open.
 - Do not treat a seven-business-day count as proof of lateness.
 - Do not make an SGC determination from missing allowable-period facts.
-- Do not make a declaration, correction, payment, journal or lodgment.
+- Do not make a declaration, correction, payment, journal or lodgement.
 
 ## Source-verification and reviewer boundary
 

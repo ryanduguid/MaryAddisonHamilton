@@ -4,7 +4,7 @@
 set -euo pipefail
 
 REPO="ryanduguid/australian-accounting-skills"
-DESCRIPTION="Australian practice and contracting workflow skills: 19 in v0.2.1; 50 on main preparing v0.3.0. Prep and review aids, not lodgment."
+DESCRIPTION="Australian accounting workflow skills for practice and contracting work: BAS, close, payroll and workpaper tie-outs. Prep and review aids. No lodgement or advice."
 HOMEPAGE="https://duguid.com.au/tools/australian-tax-ai-agents/"
 TOPICS=(
   accounting
