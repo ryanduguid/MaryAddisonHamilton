@@ -45,7 +45,7 @@ Create a reviewer-facing claim workpaper. Do not serve the claim, decide coverag
 - Do not invent a reference date or carry a rule from one state into another.
 - Do not serve the claim or diarise clocks from memory.
 - Do not decide whether the Act covers the contract.
-- Do not request identifiers or make a payment, journal or lodgment.
+- Do not request identifiers or make a payment, journal or lodgement.
 
 ## Source-verification and reviewer boundary
 

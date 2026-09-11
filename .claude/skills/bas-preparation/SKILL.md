@@ -1,13 +1,13 @@
 ---
 name: bas-preparation
-description: "Use when preparing, reviewing, or reconciling a Business Activity Statement (BAS) or IAS for an Australian entity: mapping ledger figures to BAS labels, tying out GST control accounts, or investigating a GST variance before lodgment."
+description: "Use when preparing, reviewing, or reconciling a Business Activity Statement (BAS) or IAS for an Australian entity: mapping ledger figures to BAS labels, tying out GST control accounts, or investigating a GST variance before lodgement."
 ---
 
 # BAS Preparation
 
-Prepare a BAS workpaper from ledger exports and tie every label back to the general ledger. The output is a review-ready workpaper, not a lodgment. Lodgment belongs to the registered agent.
+Prepare a BAS workpaper from ledger exports and tie every label back to the general ledger. The output is a review-ready workpaper, not a lodgement. Lodgement belongs to the registered agent.
 
-If the folder uses the filenames [Workpaper Review Gate](https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/review-ready-gate) expects, run `review-ready gate --profile bas` before handing it to a reviewer. A `NOT_READY` or `BLOCKED` pack goes back to the preparer. Do not treat `READY` as lodgment approval.
+If the folder uses the filenames [Workpaper Review Gate](https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/review-ready-gate) expects, run `review-ready gate --profile bas` before handing it to a reviewer. A `NOT_READY` or `BLOCKED` pack goes back to the preparer. Do not treat `READY` as lodgement approval.
 
 ## Inputs needed
 
@@ -16,7 +16,7 @@ Ask for these if not provided (period-locked where possible; see `xero-exports` 
 2. Trial balance as at period end
 3. GL detail for GST control accounts (GST collected / GST paid, or single GST account)
 4. Prior period BAS figures (for variance comparison)
-5. The entity's GST registration basis (cash or accruals) and lodgment cycle (monthly/quarterly)
+5. The entity's GST registration basis (cash or accruals) and lodgement cycle (monthly/quarterly)
 6. Payroll activity summary for the BAS period, per the payroll system (gross, pre-tax salary sacrifice, PAYG withheld) and the PAYG instalment rate or amount if the entity pays instalments
 
 ## Workflow

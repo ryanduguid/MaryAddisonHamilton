@@ -38,7 +38,7 @@ opening trial balance with matching settings is supplied for a movement test.
 - No source proves the account-transactions report used comparable settings.
 - No opening and closing trial balances share a documented basis and filter.
 - No current BAS form or rule source is supplied.
-- No authority approves a ledger change, amendment or lodgment.
+- No authority approves a ledger change, amendment or lodgement.
 
 ## Required checks
 

@@ -43,7 +43,7 @@ payment-plan status is supplied.
 - No first-contribution, fund-change or s 18C allocation facts are supplied,
   so no allowable longer period is proven.
 - The pipeline receipt has no contract, invoice or collection evidence.
-- No authority approves a payment plan, financing action, payment or lodgment.
+- No authority approves a payment plan, financing action, payment or lodgement.
 
 ## Required checks
 
@@ -64,7 +64,7 @@ payment-plan status is supplied.
 - Do not collapse obligations or assume payment allocation.
 - Do not treat a seven-business-day count as proof of lateness.
 - Do not make an SGC determination from missing allowable-period facts.
-- Do not take a payment, financing, payroll or lodgment action.
+- Do not take a payment, financing, payroll or lodgement action.
 
 ## Source-verification and reviewer boundary
 

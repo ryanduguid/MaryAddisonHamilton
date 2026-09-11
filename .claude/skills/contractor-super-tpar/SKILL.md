@@ -18,7 +18,7 @@ Build a payer-side review schedule for subcontractor spend. For superannuation, 
 7. Whether the payer and any payee are members of the same tax consolidated or MEC group, and whether Division 12 required withholding from any payment
 8. For any subcontractor supplying plant, evidence of the market cost of hiring comparable plant on comparable terms and the market cost of the labour
 9. Invoices or other documents held that quote the payee's ABN, and any Statement by a supplier held
-10. Prior and current TPARs or non-lodgment advice, the written notice supporting any Division 405 reporting variation, the subcontractor cost accounts, the PAYG withholding payable account movement, and the activity statements lodged for the year
+10. Prior and current TPARs or non-lodgement advice, the written notice supporting any Division 405 reporting variation, the subcontractor cost accounts, the PAYG withholding payable account movement, and the activity statements lodged for the year
 
 ## Workflow
 
@@ -50,8 +50,8 @@ Build a payer-side review schedule for subcontractor spend. For superannuation, 
 - Every s 12(3) position names the clause relied on and the contract it comes from, and every plant conclusion has the valuation evidence attached
 - Every post-1 July 2026 SG line shows the QE day, all same-day payments in payment order, qualifying earnings before and after the per-employer financial-year maximum contributions base adjustment, any s 17B certificate and s 17D evidence, the resulting individual superannuation guarantee amount, eligible contributions and the exact s 18C receipt item and period applied
 - Every F2019L00864 result separately reconciles service consideration received to relevant GST turnover, records the other-item test and preserves any opt-in evidence
-- Every TPAR due date names the s 396-55 legislative instrument or s 405-10(4) written notice that changes the applicable statutory default, plus any s 388-55 deferral that changes the approved-form lodgment time
-- Every rate, threshold and lodgment time used is recorded with its source and the date checked
+- Every TPAR due date names the s 396-55 legislative instrument or s 405-10(4) written notice that changes the applicable statutory default, plus any s 388-55 deferral that changes the approved-form lodgement time
+- Every rate, threshold and lodgement time used is recorded with its source and the date checked
 
 ## Portable safety boundary
 

@@ -22,7 +22,7 @@ practitioner.
 
 Nothing in this repository lodges a tax return, BAS, FBT return, TPAR, STP
 report, or any other official form. Workpapers, checklists, and calculations
-are draft preparation artefacts. Lodgment, declarations, payments, journals,
+are draft preparation artefacts. Lodgement, declarations, payments, journals,
 and client correspondence remain authorised human actions.
 
 Do not publish private tax records, TFNs, Medicare numbers, bank details,

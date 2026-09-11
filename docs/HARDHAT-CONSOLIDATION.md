@@ -90,3 +90,16 @@ destination pack and reinstall Hardhat Ledger
 The archived repository is read-only, so that release and its tags stay
 available. Do not rename skills, rewrite tags or keep two active owners as a
 workaround.
+
+## Spelling amendment, 11 September 2026
+
+Original prose now uses Australian English `lodgement`. Official source titles,
+original transfer hashes and earlier amendment records remain intact. This changes
+spelling only; source-review dates, refusal rules and human authority stay as recorded.
+
+| Skill | Amended canonical SHA-256 |
+|---|---|
+| `coal-lsl-levy` | `a189220a63ce47fa6d251f2aba82f4c64ccfedc1cbe6f20687620dc8495d3cec` |
+| `contractor-super-tpar` | `0cd72dc506d3b53a335ed27316e81e075ad40e68ea17ee74d712682ab4d1e8e2` |
+| `fuel-tax-credits` | `06d08d8b4d980557abc4c4f04321edd52f7c749710d99d0add5488a2b319ecdc` |
+| `payroll-tax-contractors` | `f635b19f6a857fc2f72a63866462117245543f75f0ed3cfa615f3cd7d1e1ebf2` |
