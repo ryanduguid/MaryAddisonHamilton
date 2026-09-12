@@ -2,7 +2,7 @@
 
 [![Licence: MIT](https://img.shields.io/badge/licence-MIT-047857)](LICENSE)
 [![Verify](https://img.shields.io/github/actions/workflow/status/ryanduguid/australian-accounting-skills/verify.yml?branch=main&label=verify&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/actions/workflows/verify.yml)
-[![Version](https://img.shields.io/github/v/release/ryanduguid/australian-accounting-skills?display_name=tag&label=version&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/releases/latest)
+[![Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fryanduguid%2Faustralian-accounting-skills%2Fmain%2F.claude-plugin%2Fplugin.json&query=%24.version&label=version&color=047857)](.claude-plugin/plugin.json)
 
 Synthetic example. Prep-only workflow aids. An authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
 
