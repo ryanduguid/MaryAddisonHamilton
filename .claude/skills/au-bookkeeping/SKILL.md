@@ -21,7 +21,7 @@ Period, entity structure and chart of accounts, source-document register, ledger
 
 ## Hand-off and checks
 
-A completeness register, bank/subledger reconciliations and proposed-correction list. An authorised human approves and posts corrections.
+A completeness register, bank/subledger reconciliations and proposed-correction list. For fabricated exercises, retain supplied pseudonyms, use roles for preparer and reviewer, and present the draft in chat unless a file is requested. An authorised human approves and posts corrections.
 
 For each unresolved item record evidence needed, owner, status and next action. Keep dependent results conditional until the item is resolved.
 
