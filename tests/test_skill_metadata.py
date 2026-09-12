@@ -19,6 +19,11 @@ ALLOWED_FRONT_MATTER_FIELDS = {"name", "description"}
 # that already labels a release must never label a second, different inventory.
 RELEASED_INVENTORIES = {"0.1.5": 9, "0.2.0": 19, "0.2.1": 19}
 INVENTORY_WORDS = {9: "nine", 19: "nineteen", 50: "fifty"}
+# One llms.txt skill entry. The back-reference makes the link text and the path
+# the same name, so a renamed directory cannot keep its old label.
+LLMS_SKILL_LINK = re.compile(
+    r"(?m)^- \[([a-z0-9][a-z0-9-]*)\]\(\.claude/skills/\1/SKILL\.md\)$"
+)
 # Every spelling the skills use to open a dated primary-source list. Two are in
 # the tree: the inline "Primary sources (checked 20 August 2026):" lead-in
 # (cashflow-forecast-13week, month-end-close, stp-finalisation) and the
@@ -222,6 +227,24 @@ class SkillMetadataTests(unittest.TestCase):
             for path in SKILLS_DIRECTORY.glob("*/SKILL.md")
         )
         self.assertEqual(sorted(declared_paths), discovered)
+
+    def test_llms_index_lists_every_skill_and_keeps_the_boundary(self) -> None:
+        """A published index that names a stale inventory misdirects an agent."""
+        index = (REPOSITORY / "llms.txt").read_text(encoding="utf-8")
+        listed = LLMS_SKILL_LINK.findall(index)
+        discovered = sorted(path.parent.name for path in SKILLS_DIRECTORY.glob("*/SKILL.md"))
+        self.assertEqual(listed, discovered)
+        self.assertIn(INVENTORY_WORDS[len(discovered)].capitalize(), index)
+        for boundary in ("never lodge", "not advice", "authorised human"):
+            with self.subTest(boundary=boundary):
+                self.assertIn(boundary, index.lower())
+        for route in (
+            "/plugin marketplace add ryanduguid/australian-accounting-skills",
+            "codex plugin add australian-accounting-skills@ryanduguid",
+            "npx skills add ryanduguid/australian-accounting-skills",
+        ):
+            with self.subTest(route=route):
+                self.assertIn(route, index)
 
     def test_every_skill_marks_embedded_instructions_as_untrusted(self) -> None:
         skill_files = sorted(SKILLS_DIRECTORY.glob("*/SKILL.md"))

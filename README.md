@@ -1,17 +1,28 @@
 # Australian Accounting Skills: show the BAS tie-out
 
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-047857)](LICENSE)
+[![Verify](https://img.shields.io/github/actions/workflow/status/ryanduguid/australian-accounting-skills/verify.yml?branch=main&label=verify&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/actions/workflows/verify.yml)
+[![Version](https://img.shields.io/github/v/release/ryanduguid/australian-accounting-skills?display_name=tag&label=version&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/releases/latest)
+
 Synthetic example. Prep-only workflow aids. An authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
 
 **Input:** a fabricated quarterly cash-basis BAS with GST collected of $4,400.00 and GST paid of $1,210.00, plus the matching GST control-account movement.
 
-Install the nineteen workflows in [v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1) from a separate project directory:
+Install all fifty workflows from the plugin marketplace. This route delivers the `main` inventory, the fifty-skill development set preparing v0.3.0, not a published release:
+
+```
+/plugin marketplace add ryanduguid/australian-accounting-skills
+/plugin install australian-accounting-skills@ryanduguid
+```
+
+To install the nineteen workflows in the latest published release, [v0.2.1](https://github.com/ryanduguid/australian-accounting-skills/releases/tag/v0.2.1), clone that tag from a separate project directory instead:
 
 ```bash
 git clone --branch v0.2.1 --depth 1 https://github.com/ryanduguid/australian-accounting-skills.git accounting-skills-release
 npx --yes skills@1.5.22 add ./accounting-skills-release --agent codex claude-code --skill '*' --yes --copy
 ```
 
-This copies the released skills into the current project's Codex and Claude Code directories. It does not change a global installation. See [installation and versioning](docs/installation.md) for details. The [fifty-workflow v0.3.0 development inventory](docs/installation.md#unreleased-australian-topic-expansion) is available separately; its 31 additions have no recorded model evaluation.
+That copies the nineteen released skills into the current project's Codex and Claude Code directories. It does not change a global installation. The [Codex plugin, the `npx skills` route, manual copying and versioning](docs/installation.md) cover the rest. The 31 skills `main` adds to the tag have no recorded model evaluation.
 
 An agent runtime is still required. Ask it to prepare the BAS workpaper from the supplied reports and show the GST control-account tie-out.
 

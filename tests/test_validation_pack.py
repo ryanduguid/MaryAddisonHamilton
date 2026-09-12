@@ -2,8 +2,13 @@
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
+import json
 import re
+import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -48,6 +53,93 @@ SPEC.loader.exec_module(validator)
 
 def card(front_matter: str, title: str = "test-card") -> str:
     return f"---\n{front_matter}\n---\n\n# {title}\n"
+
+
+def write(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
+def git(root: Path, *arguments: str) -> str:
+    result = subprocess.run(
+        ["git", *arguments],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        check=True,
+    )
+    return result.stdout.strip()
+
+
+def build_fixture(root: Path, cards: int = 6) -> None:
+    """A small repository the validator accepts, built from real cards.
+
+    Everything else is generated to match those cards, so the fixture stays
+    correct when the pack grows and a mutated copy isolates one rejection.
+    """
+    chosen = sorted((REPOSITORY / "validation" / "cases").glob("*.md"))[:cards]
+    skills: set[str] = set()
+    for source in chosen:
+        text = validator.read_utf8(source)
+        metadata, _ = validator.parse_front_matter(text, source.name)
+        targets = metadata["target_skills"]
+        assert isinstance(targets, list)
+        skills.update(str(skill) for skill in targets)
+        write(root / "validation" / "cases" / source.name, text)
+    for name in sorted(skills):
+        write(root / ".claude" / "skills" / name / "SKILL.md", f"# {name}\n")
+
+    identifiers = sorted(path.stem for path in chosen)
+    write(root / "validation" / "README.md", "# Fixture validation pack\n")
+    write(
+        root / "validation" / "results.schema.json",
+        json.dumps(
+            {
+                "properties": {
+                    "results": {
+                        "propertyNames": {"enum": identifiers},
+                        "additionalProperties": {
+                            "enum": list(validator.RESULT_VERDICTS)
+                        },
+                    }
+                }
+            },
+            indent=2,
+        )
+        + "\n",
+    )
+    write(
+        root / "validation" / "results" / "2026-01-31-fixture.json",
+        json.dumps(
+            {
+                "model": "fixture-model",
+                "run_date": "2026-01-31",
+                "skills_version": "fixture",
+                "runner": "A Person",
+                "results": {identifiers[0]: "pass"},
+            },
+            indent=2,
+        )
+        + "\n",
+    )
+    for relative_path in sorted(validator.EXPECTED_SUPPORT):
+        write(root / relative_path, "fixture support file\n")
+    write(
+        root / validator.MARKETPLACE,
+        json.dumps(
+            {"plugins": [{"skills": [f"./.claude/skills/{n}" for n in sorted(skills)]}]},
+            indent=2,
+        )
+        + "\n",
+    )
+    write(
+        root / validator.CATALOGUE,
+        "# Fixture skills\n\n| Skill | Use it for |\n| --- | --- |\n"
+        + "".join(f"| `{name}` | Fixture |\n" for name in sorted(skills)),
+    )
+    git(root, "init", "-q")
+    git(root, "add", "-A")
 
 
 class FrontMatterTests(unittest.TestCase):
@@ -406,6 +498,93 @@ class SafetyControlTests(unittest.TestCase):
             validator.check_sensitive_content("effective 1 **July** 2026")
 
 
+class PublishedInventoryTests(unittest.TestCase):
+    """Every published skill list is checked against the directory itself."""
+
+    def skills(self) -> set[str]:
+        return {
+            path.parent.name
+            for path in (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")
+        }
+
+    def elsewhere(self, marketplace: str, catalogue: str) -> Path:
+        directory = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, directory, True)
+        for relative_path, text in (
+            (validator.MARKETPLACE, marketplace),
+            (validator.CATALOGUE, catalogue),
+        ):
+            path = directory / relative_path
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8", newline="\n")
+        return directory
+
+    def published(self) -> tuple[str, str]:
+        return (
+            validator.read_utf8(REPOSITORY / validator.MARKETPLACE),
+            validator.read_utf8(REPOSITORY / validator.CATALOGUE),
+        )
+
+    def test_accepts_the_committed_inventories(self) -> None:
+        validator.check_published_inventories(self.skills())
+
+    def test_card_and_skill_sets_come_from_the_directories(self) -> None:
+        cases = REPOSITORY / "validation" / "cases"
+        self.assertEqual(
+            validator.EXPECTED_CASE_NAMES,
+            {path.name for path in cases.iterdir()},
+        )
+        self.assertEqual(
+            validator.CASE_IDS,
+            frozenset(path.stem for path in cases.glob("*.md")),
+        )
+
+    def test_rejects_a_marketplace_that_drifts_from_the_directory(self) -> None:
+        with self.assertRaisesRegex(
+            validator.ValidationError,
+            f"{re.escape(validator.MARKETPLACE)} does not match the skill directory",
+        ):
+            validator.check_published_inventories(self.skills() | {"made-up-skill"})
+
+    def test_rejects_a_catalogue_that_drifts_from_the_directory(self) -> None:
+        marketplace, catalogue = self.published()
+        dropped = "\n".join(
+            line
+            for line in catalogue.splitlines()
+            if not line.startswith("| `bas-preparation`")
+        )
+        root = self.elsewhere(marketplace, dropped)
+        with self.assertRaisesRegex(
+            validator.ValidationError,
+            f"{re.escape(validator.CATALOGUE)} does not match the skill directory",
+        ):
+            validator.check_published_inventories(self.skills(), root)
+
+    def test_rejects_a_repeated_entry_and_a_malformed_marketplace(self) -> None:
+        marketplace, catalogue = self.published()
+        repeated = marketplace.replace(
+            '"./.claude/skills/bas-preparation",',
+            '"./.claude/skills/bas-preparation",\n        "./other/bas-preparation",',
+        )
+        with self.assertRaisesRegex(validator.ValidationError, "names a skill twice"):
+            validator.check_published_inventories(
+                self.skills(), self.elsewhere(repeated, catalogue)
+            )
+        for label, broken in (
+            ("no plugin", '{"plugins": []}\n'),
+            ("plugins is a mapping", '{"plugins": {"name": "one"}}\n'),
+            ("skills is a string", '{"plugins": [{"skills": "all of them"}]}\n'),
+            ("no skills key", marketplace.replace('"skills": [', '"other": [')),
+        ):
+            with self.subTest(label):
+                with self.assertRaisesRegex(
+                    validator.ValidationError, "does not declare one plugin"
+                ):
+                    validator.check_published_inventories(
+                        self.skills(), self.elsewhere(broken, catalogue)
+                    )
+
+
 class RecordedRunTests(unittest.TestCase):
     """A recorded run is a pass or fail per card and nothing else."""
 
@@ -474,6 +653,171 @@ class RecordedRunTests(unittest.TestCase):
         })
         self.assertEqual(runs, {"validation/results/2026-01-31-example-model.json"})
         self.assertEqual(fixed, {"validation/README.md", "validation/results/notes.json"})
+
+
+class FullRunTests(unittest.TestCase):
+    """Every refusal `main` can reach, exercised against a mutated repository.
+
+    The whole run is the fail-closed behaviour: one drifted inventory, one
+    unreadable source or one unsafe Git mode has to stop the check, and the
+    message has to name what failed. `main` collects every error before it
+    returns, so one mutated copy can carry several independent defects.
+    """
+
+    fixture: Path
+    _directory: tempfile.TemporaryDirectory[str]
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        # Git leaves read-only objects behind, which Windows refuses to remove.
+        cls._directory = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
+        cls.fixture = Path(cls._directory.name) / "fixture"
+        build_fixture(cls.fixture)
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._directory.cleanup()
+
+    def copy(self) -> Path:
+        directory = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, directory, True)
+        root = directory / "repository"
+        shutil.copytree(self.fixture, root)
+        return root
+
+    def run_main(self, root: Path) -> tuple[int, str]:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            status = validator.main(root)
+        return status, output.getvalue()
+
+    def cards(self, root: Path) -> list[Path]:
+        return sorted((root / "validation" / "cases").glob("*.md"))
+
+    def assert_refused(self, root: Path, *expected: str) -> None:
+        status, output = self.run_main(root)
+        self.assertEqual(status, 1, output)
+        for message in expected:
+            with self.subTest(message=message):
+                self.assertIn(message, output)
+
+    def test_accepts_the_generated_fixture(self) -> None:
+        status, output = self.run_main(self.copy())
+        self.assertEqual(status, 0, output)
+        self.assertIn("Validation pack checks passed", output)
+
+    def test_extra_skill_directory_entries_are_not_skills(self) -> None:
+        """A loose file or a folder without SKILL.md is skipped, not installed."""
+        root = self.copy()
+        write(root / ".claude" / "skills" / "notes.md", "not a skill\n")
+        (root / ".claude" / "skills" / "drafts").mkdir()
+        status, output = self.run_main(root)
+        self.assertEqual(status, 0, output)
+
+    def test_inventory_tracking_and_git_failures_are_refused(self) -> None:
+        root = self.copy()
+        first, second = self.cards(root)[0], self.cards(root)[1]
+        write(root / "validation" / "stray.json", "{}\n")
+        git(root, "rm", "--quiet", "--cached", f"validation/cases/{second.name}")
+        blob = git(root, "rev-parse", ":CLAUDE.md")
+        git(root, "update-index", "--add", "--cacheinfo", f"120000,{blob},CLAUDE.md")
+        schema = root / "validation" / "results.schema.json"
+        write(schema, validator.read_utf8(schema).replace(f'"{first.stem}"', '"made-up"'))
+        run = root / "validation" / "results" / "2026-01-31-fixture.json"
+        write(run, validator.read_utf8(run).replace("2026-01-31", "2026-02-01"))
+        skill = sorted((root / ".claude" / "skills").glob("*/SKILL.md"))[0]
+        write(skill, validator.read_utf8(skill) + "trailing   \n")
+        self.assert_refused(
+            root,
+            "validation inventory mismatch",
+            "tracked inventory mismatch",
+            "tracked source has unsafe Git mode 120000",
+            "results schema case enum does not match the card inventory",
+            "run_date must match the file name",
+            "unstaged whitespace check failed",
+        )
+
+    def targets(self, path: Path) -> set[str]:
+        metadata, _ = validator.parse_front_matter(validator.read_utf8(path), path.name)
+        skills = metadata["target_skills"]
+        assert isinstance(skills, list)
+        return {str(skill) for skill in skills}
+
+    def test_card_content_failures_are_refused(self) -> None:
+        root = self.copy()
+        cards = self.cards(root)
+        # Front matter is rejected before the card can claim coverage, so
+        # orphaning a skill means breaking every card that names it.
+        orphaned = self.targets(cards[0])
+        rejected = [path for path in cards if self.targets(path) & orphaned]
+        intact = [path for path in cards if path not in rejected]
+        self.assertGreaterEqual(len(intact), 3, "the fixture needs three usable cards")
+        for path in rejected:
+            write(
+                path,
+                validator.read_utf8(path).replace(
+                    "target_skills:", "target_skills:\n  - no-such-skill", 1
+                ),
+            )
+        second, third, fourth = intact[:3]
+        write(second, validator.read_utf8(second) + "\n## Task\n")
+        reordered = validator.read_utf8(third)
+        reordered = reordered.replace("## Scenario", "## Placeholder", 1)
+        reordered = reordered.replace("## Task", "## Scenario", 1)
+        write(third, reordered.replace("## Placeholder", "## Task", 1))
+        write(fourth, validator.read_utf8(fourth) + "\n# Second title\n")
+        self.assert_refused(
+            root,
+            "unknown target skills: ['no-such-skill']",
+            "section must appear exactly once: ## Task",
+            "required sections are out of order",
+            "card must contain exactly one level-one title",
+            "card coverage does not exactly match skill inventory",
+        )
+
+    def test_unreadable_and_unsafe_sources_are_refused(self) -> None:
+        """An undecodable source is skipped by every later check, not trusted."""
+        root = self.copy()
+        for relative_path in (
+            f"validation/cases/{self.cards(root)[0].name}",
+            "validation/results.schema.json",
+            "validation/results/2026-01-31-fixture.json",
+        ):
+            (root / relative_path).write_bytes(b"\xff\xfe not utf-8\n")
+        readme = root / "validation" / "README.md"
+        write(readme, validator.read_utf8(readme) + "\nExample Trading Pty Ltd\n")
+        support = root / "CLAUDE.md"
+        write(support, validator.read_utf8(support) + "trailing   \n")
+        self.assert_refused(
+            root,
+            "is not strict UTF-8",
+            "validation/README.md: possible realistic entity suffix",
+            "CLAUDE.md:2 has trailing whitespace",
+        )
+
+    def test_an_unreadable_git_index_is_refused(self) -> None:
+        """No Git inventory means no proof the sources are the tracked ones."""
+        root = self.copy()
+        (root / ".git" / "index").write_bytes(b"not an index")
+        self.assert_refused(
+            root,
+            "Git inventory failed",
+            "unstaged whitespace check failed",
+        )
+
+    def test_a_missing_card_directory_is_refused(self) -> None:
+        root = self.copy()
+        shutil.rmtree(root / "validation" / "cases")
+        self.assert_refused(root, "cannot inventory validation cases")
+
+    def test_a_missing_skill_directory_is_refused(self) -> None:
+        root = self.copy()
+        shutil.rmtree(root / ".claude" / "skills")
+        self.assert_refused(
+            root,
+            "cannot inventory target skills",
+            f"{validator.MARKETPLACE} does not match the skill directory",
+        )
 
 
 if __name__ == "__main__":
