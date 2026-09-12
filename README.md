@@ -1,5 +1,9 @@
 # Australian Accounting Skills: show the BAS tie-out
 
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-047857)](LICENSE)
+[![Verify](https://img.shields.io/github/actions/workflow/status/ryanduguid/australian-accounting-skills/verify.yml?branch=main&label=verify&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/actions/workflows/verify.yml)
+[![Version](https://img.shields.io/github/v/release/ryanduguid/australian-accounting-skills?display_name=tag&label=version&color=047857)](https://github.com/ryanduguid/australian-accounting-skills/releases/latest)
+
 Synthetic example. Prep-only workflow aids. An authorised human reviews, decides and lodges. These skills do not provide tax advice or replace professional judgement.
 
 **Input:** a fabricated quarterly cash-basis BAS with GST collected of $4,400.00 and GST paid of $1,210.00, plus the matching GST control-account movement.
