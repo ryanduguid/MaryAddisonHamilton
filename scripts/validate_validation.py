@@ -377,7 +377,7 @@ def split_result_files(names: set[str]) -> tuple[set[str], set[str]]:
     return names - results, results
 
 
-def check_results_schema(text: str) -> None:
+def check_results_schema(text: str, known: frozenset[str] = CASE_IDS) -> None:
     """The published schema must name exactly the cards and verdicts the checker knows."""
     schema = _strict_json(text, "validation/results.schema.json")
     try:
@@ -389,10 +389,10 @@ def check_results_schema(text: str) -> None:
         assert all(isinstance(item, str) for item in enum + verdicts)
     except (AssertionError, KeyError, TypeError) as error:
         raise ValidationError("results schema does not declare the case and verdict enums") from error
-    if sorted(enum) != sorted(CASE_IDS) or len(enum) != len(CASE_IDS):
+    if sorted(enum) != sorted(known) or len(enum) != len(known):
         raise ValidationError(
             "results schema case enum does not match the card inventory: "
-            f"missing={sorted(CASE_IDS - set(enum))}, unknown={sorted(set(enum) - CASE_IDS)}"
+            f"missing={sorted(known - set(enum))}, unknown={sorted(set(enum) - known)}"
         )
     if sorted(verdicts) != sorted(RESULT_VERDICTS):
         raise ValidationError(
@@ -434,7 +434,7 @@ def check_published_inventories(skills: set[str], root: Path = ROOT) -> None:
             )
 
 
-def check_result_file(rel: str, text: str) -> None:
+def check_result_file(rel: str, text: str, known: frozenset[str] = CASE_IDS) -> None:
     """A run records a pass or fail per card and nothing else."""
     match = RESULT_FILE_RE.match(rel)
     if match is None:
@@ -465,7 +465,7 @@ def check_result_file(rel: str, text: str) -> None:
         raise ValidationError("results must map at least one card id to a verdict")
     # A card can only appear once: _strict_json rejects a repeated key.
     for case, verdict in results.items():
-        if case not in CASE_IDS:
+        if case not in known:
             raise ValidationError(f"unknown case: {case!r}")
         if verdict not in RESULT_VERDICTS:
             raise ValidationError(f"{case}: verdict must be pass or fail")
@@ -481,25 +481,29 @@ def check_text(relative_path: str, text: str) -> None:
             raise ValidationError(f"{relative_path}:{line_number} has trailing whitespace")
 
 
-def main() -> int:
+def main(root: Path = ROOT) -> int:
     errors: list[str] = []
     discovered_skills: set[str] = set()
+    case_names: set[str] = set()
+    expected: set[str] = set()
 
     result_files: set[str] = set()
     try:
-        actual, result_files = split_result_files(inventory_validation_tree())
-        if actual != EXPECTED_VALIDATION:
+        case_names = discover_case_names(root)
+        expected = expected_validation(case_names)
+        actual, result_files = split_result_files(inventory_validation_tree(root))
+        if actual != expected:
             errors.append(
                 "validation inventory mismatch: "
-                f"missing={sorted(EXPECTED_VALIDATION - actual)}, "
-                f"unexpected={sorted(actual - EXPECTED_VALIDATION)}"
+                f"missing={sorted(expected - actual)}, "
+                f"unexpected={sorted(actual - expected)}"
             )
     except ValidationError as error:
         errors.append(str(error))
 
-    expected_all = EXPECTED_VALIDATION | EXPECTED_SUPPORT | result_files
+    expected_all = expected | EXPECTED_SUPPORT | result_files
     try:
-        tracked = git_entries(sorted(expected_all))
+        tracked = git_entries(sorted(expected_all), root)
         if set(tracked) != expected_all:
             errors.append(
                 "tracked inventory mismatch: "
@@ -512,7 +516,7 @@ def main() -> int:
     except ValidationError as error:
         errors.append(str(error))
 
-    skill_root = ROOT / ".claude" / "skills"
+    skill_root = root / ".claude" / "skills"
     try:
         for directory in skill_root.iterdir():
             if directory.is_dir() and not is_reparse_point(directory):
@@ -522,16 +526,16 @@ def main() -> int:
         errors.append(f"cannot inventory target skills: {error}")
 
     try:
-        check_published_inventories(discovered_skills)
+        check_published_inventories(discovered_skills, root)
     except ValidationError as error:
         errors.append(str(error))
 
     read_sources: dict[str, str] = {}
     for rel in sorted(expected_all):
-        source_path = ROOT / PurePosixPath(rel)
+        source_path = root / PurePosixPath(rel)
         try:
-            check_expected_path(source_path)
-            check_ignored(rel)
+            check_expected_path(source_path, root)
+            check_ignored(rel, root)
             source_text = read_utf8(source_path)
             check_text(rel, source_text)
             read_sources[rel] = source_text
@@ -539,7 +543,7 @@ def main() -> int:
             errors.append(f"{rel}: {error}")
 
     covered_skills: set[str] = set()
-    for name in sorted(EXPECTED_CASE_NAMES):
+    for name in sorted(case_names):
         rel = f"validation/cases/{name}"
         text = read_sources.get(rel)
         if text is None:
@@ -577,10 +581,11 @@ def main() -> int:
             f"unknown={sorted(covered_skills - discovered_skills)}"
         )
 
+    known = case_ids(case_names)
     schema_text = read_sources.get("validation/results.schema.json")
     if schema_text is not None:
         try:
-            check_results_schema(schema_text)
+            check_results_schema(schema_text, known)
         except ValidationError as error:
             errors.append(f"validation/results.schema.json: {error}")
     for rel in sorted(result_files):
@@ -588,7 +593,7 @@ def main() -> int:
         if text is None:
             continue
         try:
-            check_result_file(rel, text)
+            check_result_file(rel, text, known)
         except ValidationError as error:
             errors.append(f"{rel}: {error}")
 
@@ -603,7 +608,7 @@ def main() -> int:
         (["git", "diff", "--cached", "--check"], "staged whitespace check"),
     ):
         try:
-            git_check(command, label)
+            git_check(command, label, root)
         except ValidationError as error:
             errors.append(str(error))
 
@@ -614,7 +619,7 @@ def main() -> int:
         return 1
     print(
         "Validation pack checks passed: "
-        f"{len(EXPECTED_CASE_NAMES)} fabricated cards, "
+        f"{len(case_names)} fabricated cards, "
         f"{len(discovered_skills)} skills, {len(result_files)} recorded runs, "
         "exact tracked inventory."
     )
