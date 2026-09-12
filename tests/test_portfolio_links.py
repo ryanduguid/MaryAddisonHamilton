@@ -3,11 +3,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-# The ten transferred contracting SKILL.md files are byte-pinned to the
-# reviewed Hardhat Ledger source commit by tests/test_hardhat_consolidation.py,
-# so wip-over-under-billing/SKILL.md keeps its original TheWIPTally link until
-# a reviewed skill change retires that pin. Its destination-owned sources.json
-# carries the maintained location and is checked here instead.
+# Maintained skill links use the same pinned engine reference as their source record.
 TARGET_FILES = (
     ROOT / "README.md",
     ROOT / "docs/integrations.md",
@@ -18,6 +14,7 @@ TARGET_FILES = (
     ROOT / ".claude/skills/stp-finalisation/SKILL.md",
     ROOT / ".claude/skills/xero-exports/SKILL.md",
     ROOT / ".claude/skills/wip-over-under-billing/sources.json",
+    ROOT / ".claude/skills/wip-over-under-billing/SKILL.md",
 )
 
 # Renamed and then archived repositories. The September 2026 consolidation
@@ -41,7 +38,7 @@ CANONICAL_URLS = (
     "https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/monthly-close-control-plane",
     "https://github.com/ryanduguid/australian-accounting/tree/main/packages/payday-super-checker",
     "https://github.com/ryanduguid/accounting-review-pipeline/tree/main/packages/xero-trial-balance-export",
-    "https://github.com/ryanduguid/australian-accounting/tree/main/packages/the-wip-tally",
+    "https://github.com/ryanduguid/australian-accounting/tree/f10086d0c99c77bb3dabd3a0fc08b9e5ab1b939a/packages/the-wip-tally",
 )
 COMPATIBILITY_IDENTIFIERS = (
     "aus-accounting-mcp",

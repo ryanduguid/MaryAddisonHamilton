@@ -29,6 +29,13 @@ Weekly cash view, 13 weeks out, rebuilt on actuals every week. The forecast's jo
 
 ## Payday Super timing control
 
+Before calculating a payment date for each payroll cycle, obtain the authorised
+reviewer's verified timing record: primary-source citation and check date,
+effective period, relevant payday, timing outcome and exception status with
+supporting facts. Keep the payment date `UNKNOWN` until that record exists.
+The dated timing branches below guide the evidence check; they are not presumed
+ordinary or exception periods to apply without the record.
+
 For paydays from 1 July 2026, the ordinary seven-business-day period requires the fund to receive the contribution, with enough information to allocate it, by the end of the seventh business day after the payday. Check which allowable longer period applies before treating a contribution as late or flagging SGC exposure, and before forecasting a legally mandatory payment date:
 
 - 20 business days for the first eligible contribution to a particular fund, including a new starter, recommencement or fund change, where the statutory conditions apply
