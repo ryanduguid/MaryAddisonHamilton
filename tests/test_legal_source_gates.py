@@ -236,7 +236,7 @@ class LegalSourceGateTests(unittest.TestCase):
     def test_wip_skill_names_the_wip_tally_engine(self) -> None:
         text = skill_text("wip-over-under-billing")
 
-        self.assertIn("https://github.com/ryanduguid/TheWIPTally", text)
+        self.assertIn("https://github.com/ryanduguid/australian-accounting/tree/f10086d0c99c77bb3dabd3a0fc08b9e5ab1b939a/packages/the-wip-tally", text)
         self.assertIn("wip-tally schedule", text)
         self.assertIn("Do not invent WIP arithmetic", text)
         self.assertIn("Do not invent the cost-to-cost ratio", text)

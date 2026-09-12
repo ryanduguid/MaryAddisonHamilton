@@ -26,7 +26,7 @@ TRANSFERRED_SKILL_HASHES = {
 
 # Destination-owned changes are recorded separately from the original transfer.
 AMENDED_SKILL_HASHES = {
-    "coal-lsl-levy": "a189220a63ce47fa6d251f2aba82f4c64ccfedc1cbe6f20687620dc8495d3cec",
+    "coal-lsl-levy": "d77c86459d3bff0761b079fcaea84e73673ecea8f027fa5c018fcfe3dca08bc3",
     "contract-cost-tracking": "b68116aa00a401d8934fe50490ea4361f7e4e176d717e1695e6486873be4493a",
     "contracting-exports": "d39b1a6479b6f73d373b51841555e8ef276135b9879594a2064c0a69cdbec3f4",
     "contractor-super-tpar": "0cd72dc506d3b53a335ed27316e81e075ad40e68ea17ee74d712682ab4d1e8e2",
@@ -35,7 +35,7 @@ AMENDED_SKILL_HASHES = {
     "plant-and-equipment-costing": "4893bbed2aab75f01a4ffe21491a9b65985b35c335d21bf6069c81fdc7679f78",
     "progress-claim-preparation": "e809b5ba58abaea107c38b02ef734524cf95d293b562a6e7125fa033b5d95392",
     "retention-schedule": "356d4bf0689d480bd467a87ab7256ac071ca5e1c4f128c79c77757a0d9245c52",
-    "wip-over-under-billing": "554f05d8c6f8b3d7fb2704e192b04ef5dca9ee7d039d424a4bb56596334355a6",
+    "wip-over-under-billing": "47d284ce45e07a062f2d1f5e4d62c5b7f6351e0281a18790c9022797bde44efa",
 }
 
 

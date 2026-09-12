@@ -103,3 +103,16 @@ spelling only. Source-review dates, refusal rules and human authority stay as re
 | `contractor-super-tpar` | `0cd72dc506d3b53a335ed27316e81e075ad40e68ea17ee74d712682ab4d1e8e2` |
 | `fuel-tax-credits` | `06d08d8b4d980557abc4c4f04321edd52f7c749710d99d0add5488a2b319ecdc` |
 | `payroll-tax-contractors` | `f635b19f6a857fc2f72a63866462117245543f75f0ed3cfa615f3cd7d1e1ebf2` |
+
+## Privacy and engine-reference amendments, 12 September 2026
+
+Coal LSL inputs now use firm-held employee references; an authorised person
+merges required identifiers inside the approved firm system. WIP guidance and
+its source record now pin the same canonical engine commit, including the
+approved-installation command. Historical transfer and amendment hashes above
+remain unchanged. Fresh model evaluation is pending.
+
+| Skill | Amended canonical SHA-256 |
+|---|---|
+| `coal-lsl-levy` | `d77c86459d3bff0761b079fcaea84e73673ecea8f027fa5c018fcfe3dca08bc3` |
+| `wip-over-under-billing` | `47d284ce45e07a062f2d1f5e4d62c5b7f6351e0281a18790c9022797bde44efa` |

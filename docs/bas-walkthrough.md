@@ -3,7 +3,7 @@
 Minimal path from install to one verified result, assuming Claude Code is already installed:
 
 1. Install the plugin (see [installation](installation.md)): `/plugin marketplace add ryanduguid/australian-accounting-skills` then `/plugin install australian-accounting-skills@ryanduguid`.
-2. Export three reports from Xero for your most recent completed BAS period: `Activity Statement`, `Trial Balance` as at period end, and `General Ledger Detail` for the GST control account(s). Use a demo or fabricated file if you are only trialling; keep real client exports inside firm policy.
+2. Export three reports from Xero for your most recent completed BAS period: `Activity Statement`, `Trial Balance` as at period end, and `General Ledger Detail` for the GST control account(s). Use a demo or fabricated file if you are only trialling. Keep real client exports and generated workpapers only in a firm-approved location outside every repository checkout. Client data must not be kept in this repository.
 3. In Claude Code, in the folder holding those exports, ask: "Prepare a BAS workpaper for the quarter ended 31 March from these exports. Cash basis, quarterly lodger." The `bas-preparation` skill picks this up and asks for anything missing.
 4. Verify the result yourself: check that net GST on the workpaper (1A less 1B) ties to the movement in the GST control account for the period. If the workpaper shows that tie-out and lists its exceptions, it worked.
 

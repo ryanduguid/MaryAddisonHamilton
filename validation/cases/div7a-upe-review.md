@@ -42,7 +42,7 @@ a final tax outcome, prescribe a repair, pay or create an agreement.
 - Record the balance and supplied evidence in a traceable register entry.
 - Request missing trust, company, transaction and current-source evidence.
 - Set status to pending authorised review.
-- Mark distributable surplus not calculated and exposure uncapped.
+- Mark distributable surplus not calculated and potential exposure unquantified pending authorised review.
 - Reconcile to the relevant GL only where source evidence permits and preserve
   unresolved matters as exceptions.
 
