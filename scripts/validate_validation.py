@@ -21,64 +21,6 @@ from yaml.tokens import AliasToken, AnchorToken, TagToken
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATION = ROOT / "validation"
-EXPECTED_CASE_NAMES = {
-    "au-bookkeeping-missing-evidence.md",
-    "au-bookkeeping-supported-reconciliation.md",
-    "au-business-formation-missing-evidence.md",
-    "au-capital-gains-missing-evidence.md",
-    "au-company-tax-missing-evidence.md",
-    "au-crypto-tax-missing-evidence.md",
-    "au-deceased-estates-missing-evidence.md",
-    "au-financial-statements-missing-evidence.md",
-    "au-financial-statements-supported-mapping.md",
-    "au-foreign-income-missing-evidence.md",
-    "au-forex-review-missing-evidence.md",
-    "au-gst-property-missing-evidence.md",
-    "au-gst-registration-review-missing-evidence.md",
-    "au-individual-return-missing-evidence.md",
-    "au-land-tax-missing-evidence.md",
-    "au-medicare-review-missing-evidence.md",
-    "au-nonresident-cgt-missing-evidence.md",
-    "au-not-for-profit-missing-evidence.md",
-    "au-partnership-tax-missing-evidence.md",
-    "au-payroll-review-missing-evidence.md",
-    "au-payroll-review-supported-tie-out.md",
-    "au-psi-review-missing-evidence.md",
-    "au-rd-incentive-missing-evidence.md",
-    "au-rental-property-missing-evidence.md",
-    "au-return-amendment-missing-evidence.md",
-    "au-small-business-cgt-missing-evidence.md",
-    "au-smsf-year-end-missing-evidence.md",
-    "au-sole-trader-missing-evidence.md",
-    "au-tax-planning-review-missing-evidence.md",
-    "au-tax-rates-verification-missing-evidence.md",
-    "au-tax-residency-missing-evidence.md",
-    "au-transfer-duty-missing-evidence.md",
-    "au-transfer-pricing-missing-evidence.md",
-    "au-trust-distributions-missing-evidence.md",
-    "bas-export-manifest-rounding.md",
-    "bas-g10-g11.md",
-    "bas-stp-w3-w4.md",
-    "cashflow-super-regime-transition.md",
-    "coal-lsl-levy-unverified-rate.md",
-    "contract-cost-unallocated-plant.md",
-    "div7a-upe-review.md",
-    "export-manifest-rounding.md",
-    "fbt-carparking-missing-declaration.md",
-    "fuel-tax-credits-missing-docket.md",
-    "payroll-tax-contractor-characterisation.md",
-    "post-journal-provenance-tie-out.md",
-    "progress-claim-missing-reference-date.md",
-    "retention-release-missing-deed.md",
-    "standalone-skill-safety-boundary.md",
-    "stp-current-vs-overdue-sg.md",
-    "wip-cost-to-complete-gap.md",
-}
-EXPECTED_VALIDATION = {
-    "validation/README.md",
-    "validation/results.schema.json",
-    *(f"validation/cases/{name}" for name in EXPECTED_CASE_NAMES),
-}
 EXPECTED_SUPPORT = {
     "CLAUDE.md",
     ".claude/rules/accounting-safety.md",
@@ -94,7 +36,6 @@ RESULT_VERDICTS = ("pass", "fail")
 # One line each and short: room for a model name or a version, not for a
 # pasted output or a note on why a case failed.
 RESULT_FIELD_MAX_LENGTH = 120
-CASE_IDS = frozenset(name.removesuffix(".md") for name in EXPECTED_CASE_NAMES)
 REQUIRED_SECTIONS = (
     "## Scenario",
     "## Task",
@@ -142,10 +83,40 @@ DATED_RULE = re.compile(
     r"(?:\d{1,2}\s+[A-Z][a-z]+\s+20\d{2}|\d+(?:\.\d+)?%)\b",
     re.I,
 )
+MARKETPLACE = ".claude-plugin/marketplace.json"
+CATALOGUE = "docs/skill-catalogue.md"
+# A catalogue row opens with the skill name in backticks, optionally wrapped in
+# a link to its SKILL.md. Nothing else in the file starts a table row.
+CATALOGUE_ROW = re.compile(r"(?m)^\| *\[?`([a-z0-9][a-z0-9-]*)`")
 
 
 class ValidationError(ValueError):
     """Expected validation failure with a user-actionable message."""
+
+
+def discover_case_names(root: Path = ROOT) -> set[str]:
+    """The card set is the directory, not a second list that can drift."""
+    try:
+        return {entry.name for entry in (root / "validation" / "cases").iterdir()}
+    except OSError as error:
+        raise ValidationError(f"cannot inventory validation cases: {error}") from error
+
+
+def expected_validation(case_names: set[str]) -> set[str]:
+    return {
+        "validation/README.md",
+        "validation/results.schema.json",
+        *(f"validation/cases/{name}" for name in case_names),
+    }
+
+
+def case_ids(case_names: set[str]) -> frozenset[str]:
+    return frozenset(name.removesuffix(".md") for name in case_names)
+
+
+EXPECTED_CASE_NAMES = discover_case_names()
+EXPECTED_VALIDATION = expected_validation(EXPECTED_CASE_NAMES)
+CASE_IDS = case_ids(EXPECTED_CASE_NAMES)
 
 
 _STRICT_YAML = ROOT / "scripts" / "strict_yaml.py"
@@ -429,6 +400,40 @@ def check_results_schema(text: str) -> None:
         )
 
 
+def check_published_inventories(skills: set[str], root: Path = ROOT) -> None:
+    """The published skill lists must name exactly the directories on disk.
+
+    The schema enum is checked against the card directory in
+    `check_results_schema`; these two are the remaining hand-maintained copies
+    of an inventory, and a copy that drifts advertises a skill nobody ships.
+    """
+    marketplace = _strict_json(read_utf8(root / PurePosixPath(MARKETPLACE)), MARKETPLACE)
+    try:
+        assert isinstance(marketplace, dict)
+        plugins = marketplace["plugins"]
+        assert isinstance(plugins, list) and len(plugins) == 1
+        declared = plugins[0]["skills"]
+        assert isinstance(declared, list)
+        assert all(isinstance(item, str) for item in declared)
+    except (AssertionError, KeyError, TypeError) as error:
+        raise ValidationError(
+            f"{MARKETPLACE} does not declare one plugin and its skill list"
+        ) from error
+
+    for label, named in (
+        (MARKETPLACE, [PurePosixPath(item).name for item in declared]),
+        (CATALOGUE, CATALOGUE_ROW.findall(read_utf8(root / PurePosixPath(CATALOGUE)))),
+    ):
+        if len(named) != len(set(named)):
+            raise ValidationError(f"{label} names a skill twice")
+        if set(named) != skills:
+            raise ValidationError(
+                f"{label} does not match the skill directory: "
+                f"missing={sorted(skills - set(named))}, "
+                f"unknown={sorted(set(named) - skills)}"
+            )
+
+
 def check_result_file(rel: str, text: str) -> None:
     """A run records a pass or fail per card and nothing else."""
     match = RESULT_FILE_RE.match(rel)
@@ -515,6 +520,11 @@ def main() -> int:
                     discovered_skills.add(directory.name)
     except (OSError, ValidationError) as error:
         errors.append(f"cannot inventory target skills: {error}")
+
+    try:
+        check_published_inventories(discovered_skills)
+    except ValidationError as error:
+        errors.append(str(error))
 
     read_sources: dict[str, str] = {}
     for rel in sorted(expected_all):

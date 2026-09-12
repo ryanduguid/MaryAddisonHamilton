@@ -126,8 +126,11 @@ python -m unittest discover -s tests -v
 git diff --check
 ```
 
-The checker reads its fixed source and card inventory plus any recorded runs
-under `results/`, which it holds to the shape in `results.schema.json`. It rejects malformed
+The checker takes the card inventory from `cases/` and the skill inventory from
+`.claude/skills/`, then holds the `results.schema.json` enum, the marketplace
+listing and the skill catalogue to those directories. It reads its fixed
+support files plus any recorded runs under `results/`, which it holds to the
+shape in `results.schema.json`. It rejects malformed
 or duplicate-key YAML, undecodable UTF-8, unexpected/untracked validation files,
 symlinks, ignored files, unsafe local links, traversal targets, trailing
 whitespace and common identifier or credential patterns. Static checks cannot
@@ -137,9 +140,9 @@ prove a live legal position or judge an agent response.
 
 - Create scenarios from scratch. Redaction or de-identification does not turn a
   client export into a fixture.
-- Add or rename a card only with the validator's fixed inventory, the card
-  list in `results.schema.json`, this coverage table and adverse tests in the
-  same change.
+- Add or rename a card only with the card list in `results.schema.json`, this
+  coverage table and adverse tests in the same change. The validator takes the
+  card set from this directory, so an untouched schema enum is what fails.
 - Keep missing evidence explicit. It is a test condition, not permission to
   manufacture a conclusion.
 - Put mutable authority in the live-source check, not the card.

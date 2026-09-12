@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import re
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -404,6 +405,93 @@ class SafetyControlTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(validator.ValidationError, "dated/rate rule"):
             validator.check_sensitive_content("effective 1 **July** 2026")
+
+
+class PublishedInventoryTests(unittest.TestCase):
+    """Every published skill list is checked against the directory itself."""
+
+    def skills(self) -> set[str]:
+        return {
+            path.parent.name
+            for path in (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")
+        }
+
+    def elsewhere(self, marketplace: str, catalogue: str) -> Path:
+        directory = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, directory, True)
+        for relative_path, text in (
+            (validator.MARKETPLACE, marketplace),
+            (validator.CATALOGUE, catalogue),
+        ):
+            path = directory / relative_path
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8", newline="\n")
+        return directory
+
+    def published(self) -> tuple[str, str]:
+        return (
+            validator.read_utf8(REPOSITORY / validator.MARKETPLACE),
+            validator.read_utf8(REPOSITORY / validator.CATALOGUE),
+        )
+
+    def test_accepts_the_committed_inventories(self) -> None:
+        validator.check_published_inventories(self.skills())
+
+    def test_card_and_skill_sets_come_from_the_directories(self) -> None:
+        cases = REPOSITORY / "validation" / "cases"
+        self.assertEqual(
+            validator.EXPECTED_CASE_NAMES,
+            {path.name for path in cases.iterdir()},
+        )
+        self.assertEqual(
+            validator.CASE_IDS,
+            frozenset(path.stem for path in cases.glob("*.md")),
+        )
+
+    def test_rejects_a_marketplace_that_drifts_from_the_directory(self) -> None:
+        with self.assertRaisesRegex(
+            validator.ValidationError,
+            f"{re.escape(validator.MARKETPLACE)} does not match the skill directory",
+        ):
+            validator.check_published_inventories(self.skills() | {"made-up-skill"})
+
+    def test_rejects_a_catalogue_that_drifts_from_the_directory(self) -> None:
+        marketplace, catalogue = self.published()
+        dropped = "\n".join(
+            line
+            for line in catalogue.splitlines()
+            if not line.startswith("| `bas-preparation`")
+        )
+        root = self.elsewhere(marketplace, dropped)
+        with self.assertRaisesRegex(
+            validator.ValidationError,
+            f"{re.escape(validator.CATALOGUE)} does not match the skill directory",
+        ):
+            validator.check_published_inventories(self.skills(), root)
+
+    def test_rejects_a_repeated_entry_and_a_malformed_marketplace(self) -> None:
+        marketplace, catalogue = self.published()
+        repeated = marketplace.replace(
+            '"./.claude/skills/bas-preparation",',
+            '"./.claude/skills/bas-preparation",\n        "./other/bas-preparation",',
+        )
+        with self.assertRaisesRegex(validator.ValidationError, "names a skill twice"):
+            validator.check_published_inventories(
+                self.skills(), self.elsewhere(repeated, catalogue)
+            )
+        for label, broken in (
+            ("no plugin", '{"plugins": []}\n'),
+            ("plugins is a mapping", '{"plugins": {"name": "one"}}\n'),
+            ("skills is a string", '{"plugins": [{"skills": "all of them"}]}\n'),
+            ("no skills key", marketplace.replace('"skills": [', '"other": [')),
+        ):
+            with self.subTest(label):
+                with self.assertRaisesRegex(
+                    validator.ValidationError, "does not declare one plugin"
+                ):
+                    validator.check_published_inventories(
+                        self.skills(), self.elsewhere(broken, catalogue)
+                    )
 
 
 class RecordedRunTests(unittest.TestCase):
