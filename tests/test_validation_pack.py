@@ -360,7 +360,7 @@ class SafetyControlTests(unittest.TestCase):
         # is defined, so scanning only the skills would let the canonical text
         # lose it while every copy still passed. Both phrases are matched on
         # whitespace-collapsed text, because the rule wraps the requirement
-        # across two lines and a line break must not hide a sentence that is
+        # across 2 lines and a line break must not hide a sentence that is
         # there.
         instructions = sorted(
             (REPOSITORY / ".claude" / "skills").glob("*/SKILL.md")

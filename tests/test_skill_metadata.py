@@ -347,7 +347,7 @@ class SkillMetadataTests(unittest.TestCase):
         Detection has to cover every spelling of that list the tree uses. The
         skills transferred under `test_hardhat_consolidation.py` head theirs
         `## Primary sources checked`, so a check keyed to the inline lead-in
-        alone skipped three skills whose SKILL.md bytes are hash-locked and
+        alone skipped 3 skills whose SKILL.md bytes are hash-locked and
         cannot be reworded to suit the test.
         """
         dated: list[str] = []
@@ -373,7 +373,7 @@ class SkillMetadataTests(unittest.TestCase):
         )
 
     def test_version_never_relabels_a_published_inventory(self) -> None:
-        """One version string must identify one set of skills, not two."""
+        """One version string must identify one set of skills, not 2."""
         version = (REPOSITORY / "VERSION").read_text(encoding="utf-8").strip()
         released = RELEASED_INVENTORIES.get(version)
         if released is None:
