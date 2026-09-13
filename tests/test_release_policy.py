@@ -1,7 +1,7 @@
 """The release workflow is the closed shared skill policy, not a local copy."""
 
-from pathlib import Path
 import unittest
+from pathlib import Path
 
 import yaml
 
