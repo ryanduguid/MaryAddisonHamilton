@@ -11,7 +11,6 @@ from pathlib import Path
 
 import yaml
 
-
 REPOSITORY = Path(__file__).resolve().parents[1]
 SKILLS_DIRECTORY = REPOSITORY / ".claude" / "skills"
 ALLOWED_FRONT_MATTER_FIELDS = {"name", "description"}

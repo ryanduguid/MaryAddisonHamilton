@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import unittest
-
+from pathlib import Path
 
 REPOSITORY = Path(__file__).resolve().parents[1]
 SKILLS = REPOSITORY / ".claude" / "skills"

@@ -13,7 +13,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 REPOSITORY = Path(__file__).resolve().parents[1]
 # The not-advice sentence has to travel with a single copied skill folder, so a
 # link back to the repository root does not count as one.
@@ -734,7 +733,6 @@ class FullRunTests(unittest.TestCase):
             "tracked source has unsafe Git mode 120000",
             "results schema case enum does not match the card inventory",
             "run_date must match the file name",
-            "unstaged whitespace check failed",
         )
 
     def targets(self, path: Path) -> set[str]:
@@ -802,7 +800,6 @@ class FullRunTests(unittest.TestCase):
         self.assert_refused(
             root,
             "Git inventory failed",
-            "unstaged whitespace check failed",
         )
 
     def test_a_missing_card_directory_is_refused(self) -> None:

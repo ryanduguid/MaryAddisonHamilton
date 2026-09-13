@@ -7,7 +7,6 @@ from pathlib import Path
 
 import yaml
 
-
 REPOSITORY = Path(__file__).resolve().parents[1]
 VERIFY_WORKFLOW = REPOSITORY / ".github" / "workflows" / "verify.yml"
 CONTRIBUTOR_GUIDES = ("AGENTS.md", "CONTRIBUTING.md")

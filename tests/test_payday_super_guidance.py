@@ -6,7 +6,6 @@ import re
 import unittest
 from pathlib import Path
 
-
 REPOSITORY = Path(__file__).resolve().parents[1]
 SKILL_FILES = {
     "stp-finalisation": REPOSITORY / ".claude" / "skills" / "stp-finalisation" / "SKILL.md",
