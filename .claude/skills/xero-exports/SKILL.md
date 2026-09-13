@@ -85,7 +85,7 @@ report run with different column settings changes the set, so match by name.
 
 1. TB debits = credits (a truncated export fails this first)
 2. Account Transactions: compare per-account movement with opening and closing TBs that use identical period, basis, tracking and entity filters; otherwise document why equality is not expected
-3. Match the aged listing's population to its TB control account at the same date. An Aged Payables Summary can include a separate `Expense Claims` section (observed 13 September 2026). Compare `Total Aged Payables` with Accounts Payable and reconcile expense claims separately. Keep repeated contact rows until the underlying items explain them; do not deduplicate names or adjust values to force agreement.
+3. Match the aged listing's population to its TB control account at the same date. An Aged Payables Summary can include a separate `Expense Claims` section (observed 13 September 2026). Compare the supplier-only `Total Aged Payables` subtotal with Accounts Payable; this excludes `Expense Claims`, which needs a separate reconciliation. The combined grand total includes both populations. Keep repeated contact rows until the underlying items explain them; do not deduplicate names or adjust values to force agreement.
 4. Row-count and total sanity: compare both with the on-screen report before trusting a large export; if either cannot be obtained, record the check as not performed
 
 A report showing both an empty result and an error is unavailable evidence,
