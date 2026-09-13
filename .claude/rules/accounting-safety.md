@@ -32,3 +32,6 @@ individual skill remains the detailed procedure.
    reviewer-facing exception. Preserve supplied amounts and periods. Show the
    calculation for any rounding bridge and check it arithmetically; truncation
    and rounding to nearest are different operations.
+   Calculate each difference from its named source amounts; calculate a range
+   as maximum minus minimum. Verify that report totals measure the same
+   population before treating numerical agreement as a reconciliation.
