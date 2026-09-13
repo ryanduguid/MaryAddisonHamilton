@@ -15,6 +15,12 @@ tracking/entity filters, draft or pending-transaction setting, currency and
 other report options. The manifest prevents false differences caused by
 mismatched settings or timing.
 
+Record the export format and any conversion as separate steps. In Demo Company
+(AU) on 13 September 2026, the Trial Balance, Profit and Loss, Balance Sheet and
+both aged-summary menus offered Excel, PDF and Google Sheets, with no CSV option.
+For a CSV-only importer, recalculate the Excel export and save the required sheet
+as CSV UTF-8. Retain the source workbook and preserve account codes as text.
+
 ## The core exports and what they're for
 
 Report names below are the exact AU menu labels. Where a skill in this pack asks
@@ -49,7 +55,7 @@ Xero changes a report layout.
 7. Multi-sheet exports: Management Report (Executive Summary, Cash Summary, Profit and Loss, Balance Sheet, both aged summaries), Reconciliation Reports (Trial Balance, both aged summaries, one reconciliation summary per bank account, Fixed Asset Reconciliation, General Ledger Exceptions, Journal Report), Bank Reconciliation (Reconciliation Summary, Bank Statement, Statement Exceptions) and Activity Statement (Activity Statement, Transactions by Tax Rate, Transactions by BAS Field). Reading only the first sheet misses evidence.
 8. Overall Budget, GST Reconciliation, Foreign Currency Gains and Losses and Sales by Item still export as legacy `.xls` (BIFF), not `.xlsx`, and the Overall Budget `.xls` header holds Excel serial dates.
 9. The Statement Lines CSV puts the account name and number on lines 1 and 2, the header on line 3, repeats the header at the end, and quotes amounts with thousands separators (`"6,187.50"`). The Overall Budget CSV writes `Name (code)` accounts and four-decimal amounts.
-10. Tracking categories append extra columns when enabled; code defensively for their presence or absence.
+10. Tracking comparisons can replace period columns with option columns. The `Compare Region` P&L export observed on 13 September 2026 used `Account,Eastside,North,South,West Coast,Unassigned`. Treat each option separately and reconcile their combined total; taking the first numeric column loses the other regions. Convert to an importer's documented tracking layout, or stop if it cannot preserve the splits.
 
 ## Observed column headers
 
@@ -79,8 +85,14 @@ report run with different column settings changes the set, so match by name.
 
 1. TB debits = credits (a truncated export fails this first)
 2. Account Transactions: compare per-account movement with opening and closing TBs that use identical period, basis, tracking and entity filters; otherwise document why equality is not expected
-3. Aged listings total = the control account balance on the TB, same date
+3. Match the aged listing's population to its TB control account at the same date. An Aged Payables Summary can include a separate `Expense Claims` section (observed 13 September 2026). Compare the supplier-only `Total Aged Payables` subtotal with Accounts Payable; this excludes `Expense Claims`, which needs a separate reconciliation. The combined grand total includes both populations. Keep repeated contact rows until the underlying items explain them; do not deduplicate names or adjust values to force agreement.
 4. Row-count and total sanity: compare both with the on-screen report before trusting a large export; if either cannot be obtained, record the check as not performed
+
+A report showing both an empty result and an error is unavailable evidence,
+not proof of zero activity. Payroll Activity Details and Superannuation Payments
+returned `Sorry, something went wrong.` during the 13 September 2026 demo check.
+No payroll export headers were obtained, so payroll import profiles remain
+unverified. A report's presence in the menu does not validate its export schema.
 
 ## File conventions
 
