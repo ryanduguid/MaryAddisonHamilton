@@ -93,8 +93,8 @@ python tests/verify_skills_cli.py
 git diff --check
 ```
 
-The five Python checks are the gates `.github/workflows/verify.yml` runs. Ruff
-and mypy run in its `lint` job, then the three verification checks run on Python 3.10,
+The 5 Python checks are the gates `.github/workflows/verify.yml` runs. Ruff
+and mypy run in its `lint` job, then the 3 verification checks run on Python 3.10,
 3.12 and 3.13.
 
 `tests/test_skill_metadata.py` enforces the layout: front matter carrying

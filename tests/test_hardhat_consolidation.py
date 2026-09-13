@@ -25,16 +25,16 @@ TRANSFERRED_SKILL_HASHES = {
 
 # Destination-owned changes are recorded separately from the original transfer.
 AMENDED_SKILL_HASHES = {
-    "coal-lsl-levy": "d77c86459d3bff0761b079fcaea84e73673ecea8f027fa5c018fcfe3dca08bc3",
-    "contract-cost-tracking": "b68116aa00a401d8934fe50490ea4361f7e4e176d717e1695e6486873be4493a",
-    "contracting-exports": "d39b1a6479b6f73d373b51841555e8ef276135b9879594a2064c0a69cdbec3f4",
-    "contractor-super-tpar": "0cd72dc506d3b53a335ed27316e81e075ad40e68ea17ee74d712682ab4d1e8e2",
-    "fuel-tax-credits": "06d08d8b4d980557abc4c4f04321edd52f7c749710d99d0add5488a2b319ecdc",
-    "payroll-tax-contractors": "f635b19f6a857fc2f72a63866462117245543f75f0ed3cfa615f3cd7d1e1ebf2",
-    "plant-and-equipment-costing": "4893bbed2aab75f01a4ffe21491a9b65985b35c335d21bf6069c81fdc7679f78",
-    "progress-claim-preparation": "e809b5ba58abaea107c38b02ef734524cf95d293b562a6e7125fa033b5d95392",
-    "retention-schedule": "356d4bf0689d480bd467a87ab7256ac071ca5e1c4f128c79c77757a0d9245c52",
-    "wip-over-under-billing": "47d284ce45e07a062f2d1f5e4d62c5b7f6351e0281a18790c9022797bde44efa",
+    "coal-lsl-levy": "d9a57dd6ed2217a68a22a6cb15416104e4b46581e15079a573e4d1dc1f9ed101",
+    "contract-cost-tracking": "7e8ee6f47caa283fa7fa0d282c43b902600fe87f9e6237ad15f2daab348a7957",
+    "contracting-exports": "a423015904aec0e79846381725a92bd6393121bdbb4e55b4b468854b1d3cd450",
+    "contractor-super-tpar": "1955efd6c7595606c714123cffd660b1f49dc349a27cf388f214af3c24e712d9",
+    "fuel-tax-credits": "93b7d67eaa8d4a50fc584754249f39f98c15417ad4c59fb5614b880a0b9e8f26",
+    "payroll-tax-contractors": "fc03ba9c035c2092770cbaeeb901671e375a2a4696cddba474350dde07e63d75",
+    "plant-and-equipment-costing": "11ce902d769e0b8be65d81a23dd6fdd7f6ed453070208240bf91a066877676b8",
+    "progress-claim-preparation": "8a6799ed533f491acc8fc1b16212bf70ec28690bdf9783cb83fd4b4e7bdb6b5c",
+    "retention-schedule": "4af4c536f331c82e3730aaebcf8f9afe0757cf08ada56c898c0b0c54b2a7d891",
+    "wip-over-under-billing": "ce6d130bb924904edd617e06371d15b07104672333467cf364953cf01116bbe5",
 }
 
 

@@ -31,8 +31,8 @@ python scripts/validate_validation.py
 python tests/verify_skills_cli.py
 ```
 
-Those five checks are the gates `.github/workflows/verify.yml` runs. Ruff and
-mypy run in its `lint` job, then the three verification checks run on Python 3.10, 3.12
+Those 5 checks are the gates `.github/workflows/verify.yml` runs. Ruff and
+mypy run in its `lint` job, then the 3 verification checks run on Python 3.10, 3.12
 and 3.13. The last one needs `npx` and hard-codes the expected skill names,
 so renaming a skill fails there even when the unittest suite passes.
 

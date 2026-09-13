@@ -385,7 +385,7 @@ def check_published_inventories(skills: set[str], root: Path = ROOT) -> None:
     """The published skill lists must name exactly the directories on disk.
 
     The schema enum is checked against the card directory in
-    `check_results_schema`; these two are the remaining hand-maintained copies
+    `check_results_schema`; these 2 are the remaining hand-maintained copies
     of an inventory, and a copy that drifts advertises a skill nobody ships.
     """
     marketplace = _strict_json(read_utf8(root / PurePosixPath(MARKETPLACE)), MARKETPLACE)

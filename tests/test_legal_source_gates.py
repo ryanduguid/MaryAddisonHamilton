@@ -138,7 +138,7 @@ class LegalSourceGateTests(unittest.TestCase):
         text = skill_text("contractor-super-tpar")
 
         self.assertIn("each payment in its actual payment order", text)
-        self.assertIn("two or more payments on the same QE day", text)
+        self.assertIn("2 or more payments on the same QE day", text)
         self.assertIn("sum their s 10A(6)-adjusted amounts", text)
         self.assertIn("QE-day total once by the 12% charge percentage", text)
 
