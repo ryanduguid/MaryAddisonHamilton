@@ -116,3 +116,12 @@ remain unchanged. Fresh model evaluation is pending.
 |---|---|
 | `coal-lsl-levy` | `d77c86459d3bff0761b079fcaea84e73673ecea8f027fa5c018fcfe3dca08bc3` |
 | `wip-over-under-billing` | `47d284ce45e07a062f2d1f5e4d62c5b7f6351e0281a18790c9022797bde44efa` |
+
+## Fabricated exercise amendment, 13 September 2026
+
+Contracting export intake now uses operator roles and supplied pseudonyms in
+fabricated exercises, with an in-chat manifest when no file is requested. Real
+client storage requirements remain in force. The original transfer and earlier
+amendment records above are preserved. Fresh responses require human assessment.
+
+The amended canonical SHA-256 for `contracting-exports` is `a84b6a267206fa7e03d3cd55d4367965cca438dd5236ff2f3ad02037f856238b`.
